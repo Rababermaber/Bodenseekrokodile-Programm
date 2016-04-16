@@ -1,0 +1,256 @@
+   1               		.file	"bno055.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	bno_init
+  18               	bno_init:
+  19               	.LFB14:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 80E5      		ldi r24,lo8(80)
+  25 0002 0E94 0000 		call i2c_start
+  26               	.LM3:
+  27 0006 8FE3      		ldi r24,lo8(63)
+  28 0008 0E94 0000 		call i2c_write
+  29               	.LM4:
+  30 000c 80E2      		ldi r24,lo8(32)
+  31 000e 0E94 0000 		call i2c_write
+  32               	.LM5:
+  33 0012 0E94 0000 		call i2c_stop
+  34               	/* epilogue start */
+  35               	.LM6:
+  36 0016 0895      		ret
+  37               	.LFE14:
+  39               	.global	bno_read_system_info
+  41               	bno_read_system_info:
+  42               	.LFB9:
+  43               	.LM7:
+  44               	.LVL0:
+  45 0018 1F93      		push r17
+  46               	/* prologue: function */
+  47               	/* frame size = 0 */
+  48 001a 182F      		mov r17,r24
+  49               	.LM8:
+  50 001c 80E5      		ldi r24,lo8(80)
+  51               	.LVL1:
+  52 001e 0E94 0000 		call i2c_start
+  53 0022 8823      		tst r24
+  54 0024 01F4      		brne .L4
+  55               	.LM9:
+  56 0026 812F      		mov r24,r17
+  57 0028 0E94 0000 		call i2c_write
+  58               	.L4:
+  59               	.LM10:
+  60 002c 81E5      		ldi r24,lo8(81)
+  61 002e 0E94 0000 		call i2c_rep_start
+  62 0032 8823      		tst r24
+  63 0034 01F0      		breq .L5
+  64 0036 1FEF      		ldi r17,lo8(-1)
+  65               	.LVL2:
+  66 0038 00C0      		rjmp .L6
+  67               	.LVL3:
+  68               	.L5:
+  69               	.LM11:
+  70 003a 0E94 0000 		call i2c_readNak
+  71 003e 182F      		mov r17,r24
+  72               	.LVL4:
+  73               	.L6:
+  74               	.LM12:
+  75 0040 0E94 0000 		call i2c_stop
+  76               	.LM13:
+  77 0044 812F      		mov r24,r17
+  78               	/* epilogue start */
+  79 0046 1F91      		pop r17
+  80               	.LVL5:
+  81 0048 0895      		ret
+  82               	.LFE9:
+  84               	.global	bno_start_ndof
+  86               	bno_start_ndof:
+  87               	.LFB13:
+  88               	.LM14:
+  89               	/* prologue: function */
+  90               	/* frame size = 0 */
+  91               	.LM15:
+  92 004a 8DE3      		ldi r24,lo8(61)
+  93 004c 0E94 0000 		call bno_read_system_info
+  94 0050 8C30      		cpi r24,lo8(12)
+  95 0052 01F0      		breq .L10
+  96               	.LM16:
+  97 0054 80E5      		ldi r24,lo8(80)
+  98 0056 0E94 0000 		call i2c_start
+  99               	.LM17:
+ 100 005a 8DE3      		ldi r24,lo8(61)
+ 101 005c 0E94 0000 		call i2c_write
+ 102               	.LM18:
+ 103 0060 8CE0      		ldi r24,lo8(12)
+ 104 0062 0E94 0000 		call i2c_write
+ 105               	.LM19:
+ 106 0066 0E94 0000 		call i2c_stop
+ 107               	.LM20:
+ 108 006a 80E5      		ldi r24,lo8(80)
+ 109 006c 0E94 0000 		call i2c_start
+ 110               	.LM21:
+ 111 0070 8FE3      		ldi r24,lo8(63)
+ 112 0072 0E94 0000 		call i2c_write
+ 113               	.LM22:
+ 114 0076 81E0      		ldi r24,lo8(1)
+ 115 0078 0E94 0000 		call i2c_write
+ 116               	.LM23:
+ 117 007c 0E94 0000 		call i2c_stop
+ 118               	.L10:
+ 119 0080 0895      		ret
+ 120               	.LFE13:
+ 122               	.global	bno_read_sensor_data
+ 124               	bno_read_sensor_data:
+ 125               	.LFB8:
+ 126               	.LM24:
+ 127               	.LVL6:
+ 128 0082 1F93      		push r17
+ 129 0084 CF93      		push r28
+ 130 0086 DF93      		push r29
+ 131               	/* prologue: function */
+ 132               	/* frame size = 0 */
+ 133 0088 182F      		mov r17,r24
+ 134               	.LM25:
+ 135 008a 80E5      		ldi r24,lo8(80)
+ 136               	.LVL7:
+ 137 008c 0E94 0000 		call i2c_start
+ 138 0090 8823      		tst r24
+ 139 0092 01F4      		brne .L12
+ 140               	.LM26:
+ 141 0094 812F      		mov r24,r17
+ 142 0096 0E94 0000 		call i2c_write
+ 143               	.L12:
+ 144               	.LM27:
+ 145 009a 81E5      		ldi r24,lo8(81)
+ 146 009c 0E94 0000 		call i2c_rep_start
+ 147 00a0 8823      		tst r24
+ 148 00a2 01F0      		breq .L13
+ 149 00a4 CFEF      		ldi r28,lo8(-1)
+ 150 00a6 DFEF      		ldi r29,hi8(-1)
+ 151               	.LVL8:
+ 152 00a8 00C0      		rjmp .L14
+ 153               	.LVL9:
+ 154               	.L13:
+ 155               	.LM28:
+ 156 00aa 0E94 0000 		call i2c_readAck
+ 157 00ae C82F      		mov r28,r24
+ 158               	.LVL10:
+ 159 00b0 D0E0      		ldi r29,lo8(0)
+ 160               	.LVL11:
+ 161               	.LM29:
+ 162 00b2 0E94 0000 		call i2c_readNak
+ 163 00b6 382F      		mov r19,r24
+ 164 00b8 20E0      		ldi r18,lo8(0)
+ 165 00ba C20F      		add r28,r18
+ 166 00bc D31F      		adc r29,r19
+ 167               	.LVL12:
+ 168               	.L14:
+ 169               	.LM30:
+ 170 00be 0E94 0000 		call i2c_stop
+ 171               	.LM31:
+ 172 00c2 CE01      		movw r24,r28
+ 173               	.LVL13:
+ 174               	/* epilogue start */
+ 175 00c4 DF91      		pop r29
+ 176               	.LVL14:
+ 177 00c6 CF91      		pop r28
+ 178 00c8 1F91      		pop r17
+ 179               	.LVL15:
+ 180 00ca 0895      		ret
+ 181               	.LFE8:
+ 183               	.global	bno_dps
+ 185               	bno_dps:
+ 186               	.LFB12:
+ 187               	.LM32:
+ 188               	.LVL16:
+ 189               	/* prologue: function */
+ 190               	/* frame size = 0 */
+ 191               	.LM33:
+ 192 00cc 0E94 0000 		call bno_read_sensor_data
+ 193               	.LVL17:
+ 194 00d0 6AE0      		ldi r22,lo8(10)
+ 195 00d2 70E0      		ldi r23,hi8(10)
+ 196 00d4 0E94 0000 		call __divmodhi4
+ 197 00d8 CB01      		movw r24,r22
+ 198               	/* epilogue start */
+ 199               	.LM34:
+ 200 00da 0895      		ret
+ 201               	.LFE12:
+ 203               	.global	bno_linear_acceleration
+ 205               	bno_linear_acceleration:
+ 206               	.LFB11:
+ 207               	.LM35:
+ 208               	.LVL18:
+ 209               	/* prologue: function */
+ 210               	/* frame size = 0 */
+ 211               	.LM36:
+ 212 00dc 0E94 0000 		call bno_read_sensor_data
+ 213               	.LVL19:
+ 214 00e0 AA27      		clr r26
+ 215 00e2 97FD      		sbrc r25,7
+ 216 00e4 A095      		com r26
+ 217 00e6 BA2F      		mov r27,r26
+ 218 00e8 BC01      		movw r22,r24
+ 219 00ea CD01      		movw r24,r26
+ 220 00ec 0E94 0000 		call __floatsisf
+ 221 00f0 20E0      		ldi r18,lo8(0x42c80000)
+ 222 00f2 30E0      		ldi r19,hi8(0x42c80000)
+ 223 00f4 48EC      		ldi r20,hlo8(0x42c80000)
+ 224 00f6 52E4      		ldi r21,hhi8(0x42c80000)
+ 225 00f8 0E94 0000 		call __divsf3
+ 226               	/* epilogue start */
+ 227               	.LM37:
+ 228 00fc 0895      		ret
+ 229               	.LFE11:
+ 231               	.global	bno_degree
+ 233               	bno_degree:
+ 234               	.LFB10:
+ 235               	.LM38:
+ 236               	.LVL20:
+ 237               	/* prologue: function */
+ 238               	/* frame size = 0 */
+ 239               	.LM39:
+ 240 00fe 0E94 0000 		call bno_read_sensor_data
+ 241               	.LVL21:
+ 242 0102 60E1      		ldi r22,lo8(16)
+ 243 0104 70E0      		ldi r23,hi8(16)
+ 244 0106 0E94 0000 		call __divmodhi4
+ 245 010a CB01      		movw r24,r22
+ 246               	/* epilogue start */
+ 247               	.LM40:
+ 248 010c 0895      		ret
+ 249               	.LFE10:
+ 323               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 bno055.c
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:2      *ABS*:0000003f __SREG__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:3      *ABS*:0000003e __SP_H__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:4      *ABS*:0000003d __SP_L__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:5      *ABS*:00000034 __CCP__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:7      *ABS*:00000001 __zero_reg__
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:18     .text:00000000 bno_init
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:41     .text:00000018 bno_read_system_info
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:86     .text:0000004a bno_start_ndof
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:124    .text:00000082 bno_read_sensor_data
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:185    .text:000000cc bno_dps
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:205    .text:000000dc bno_linear_acceleration
+C:\DOKUME~1\schueler\LOKALE~1\Temp/ccdCToBW.s:233    .text:000000fe bno_degree
+
+UNDEFINED SYMBOLS
+i2c_start
+i2c_write
+i2c_stop
+i2c_rep_start
+i2c_readNak
+i2c_readAck
+__divmodhi4
+__floatsisf
+__divsf3
