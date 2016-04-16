@@ -1,0 +1,150 @@
+   1               		.file	"gyr03a.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	Gyro_byte
+  18               	Gyro_byte:
+  19               	.LFB5:
+  20               	.LM1:
+  21 0000 0F93      		push r16
+  22 0002 1F93      		push r17
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0004 86ED      		ldi r24,lo8(-42)
+  27 0006 0E94 0000 		call i2c_start
+  28               	.LM3:
+  29 000a 88E2      		ldi r24,lo8(40)
+  30 000c 0E94 0000 		call i2c_write
+  31               	.LM4:
+  32 0010 87ED      		ldi r24,lo8(-41)
+  33 0012 0E94 0000 		call i2c_rep_start
+  34               	.LM5:
+  35 0016 0E94 0000 		call i2c_readAck
+  36 001a 082F      		mov r16,r24
+  37 001c 10E0      		ldi r17,lo8(0)
+  38 001e 1093 0000 		sts (x_out)+1,r17
+  39 0022 0093 0000 		sts x_out,r16
+  40               	.LM6:
+  41 0026 0E94 0000 		call i2c_readNak
+  42 002a 382F      		mov r19,r24
+  43 002c 20E0      		ldi r18,lo8(0)
+  44 002e 200F      		add r18,r16
+  45 0030 311F      		adc r19,r17
+  46 0032 3093 0000 		sts (x_out)+1,r19
+  47 0036 2093 0000 		sts x_out,r18
+  48               	.LM7:
+  49 003a 86ED      		ldi r24,lo8(-42)
+  50 003c 0E94 0000 		call i2c_start
+  51               	.LM8:
+  52 0040 8AE2      		ldi r24,lo8(42)
+  53 0042 0E94 0000 		call i2c_write
+  54               	.LM9:
+  55 0046 87ED      		ldi r24,lo8(-41)
+  56 0048 0E94 0000 		call i2c_rep_start
+  57               	.LM10:
+  58 004c 0E94 0000 		call i2c_readAck
+  59 0050 082F      		mov r16,r24
+  60 0052 10E0      		ldi r17,lo8(0)
+  61 0054 1093 0000 		sts (y_out)+1,r17
+  62 0058 0093 0000 		sts y_out,r16
+  63               	.LM11:
+  64 005c 0E94 0000 		call i2c_readNak
+  65 0060 382F      		mov r19,r24
+  66 0062 20E0      		ldi r18,lo8(0)
+  67 0064 200F      		add r18,r16
+  68 0066 311F      		adc r19,r17
+  69 0068 3093 0000 		sts (y_out)+1,r19
+  70 006c 2093 0000 		sts y_out,r18
+  71               	.LM12:
+  72 0070 86ED      		ldi r24,lo8(-42)
+  73 0072 0E94 0000 		call i2c_start
+  74               	.LM13:
+  75 0076 8CE2      		ldi r24,lo8(44)
+  76 0078 0E94 0000 		call i2c_write
+  77               	.LM14:
+  78 007c 87ED      		ldi r24,lo8(-41)
+  79 007e 0E94 0000 		call i2c_rep_start
+  80               	.LM15:
+  81 0082 0E94 0000 		call i2c_readAck
+  82 0086 082F      		mov r16,r24
+  83 0088 10E0      		ldi r17,lo8(0)
+  84 008a 1093 0000 		sts (z_out)+1,r17
+  85 008e 0093 0000 		sts z_out,r16
+  86               	.LM16:
+  87 0092 0E94 0000 		call i2c_readNak
+  88 0096 382F      		mov r19,r24
+  89 0098 20E0      		ldi r18,lo8(0)
+  90 009a 200F      		add r18,r16
+  91 009c 311F      		adc r19,r17
+  92 009e 3093 0000 		sts (z_out)+1,r19
+  93 00a2 2093 0000 		sts z_out,r18
+  94               	.LM17:
+  95 00a6 0E94 0000 		call i2c_stop
+  96               	/* epilogue start */
+  97               	.LM18:
+  98 00aa 1F91      		pop r17
+  99 00ac 0F91      		pop r16
+ 100 00ae 0895      		ret
+ 101               	.LFE5:
+ 103               	.global	gyro_init
+ 105               	gyro_init:
+ 106               	.LFB4:
+ 107               	.LM19:
+ 108               	/* prologue: function */
+ 109               	/* frame size = 0 */
+ 110               	.LM20:
+ 111 00b0 86ED      		ldi r24,lo8(-42)
+ 112 00b2 0E94 0000 		call i2c_start
+ 113               	.LM21:
+ 114 00b6 80E2      		ldi r24,lo8(32)
+ 115 00b8 0E94 0000 		call i2c_write
+ 116               	.LM22:
+ 117 00bc 8FE0      		ldi r24,lo8(15)
+ 118 00be 0E94 0000 		call i2c_write
+ 119               	.LM23:
+ 120 00c2 0E94 0000 		call i2c_stop
+ 121               	/* epilogue start */
+ 122               	.LM24:
+ 123 00c6 0895      		ret
+ 124               	.LFE4:
+ 126               	.global	x_out
+ 127               	.global	x_out
+ 128               		.section .bss
+ 131               	x_out:
+ 132 0000 0000      		.skip 2,0
+ 133               	.global	y_out
+ 134               	.global	y_out
+ 137               	y_out:
+ 138 0002 0000      		.skip 2,0
+ 139               	.global	z_out
+ 140               	.global	z_out
+ 143               	z_out:
+ 144 0004 0000      		.skip 2,0
+ 177               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 gyr03a.c
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:2      *ABS*:0000003f __SREG__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:3      *ABS*:0000003e __SP_H__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:4      *ABS*:0000003d __SP_L__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:5      *ABS*:00000034 __CCP__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:7      *ABS*:00000001 __zero_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:18     .text:00000000 Gyro_byte
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:131    .bss:00000000 x_out
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:137    .bss:00000002 y_out
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:143    .bss:00000004 z_out
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccIcwSwk.s:105    .text:000000b0 gyro_init
+
+UNDEFINED SYMBOLS
+i2c_start
+i2c_write
+i2c_rep_start
+i2c_readAck
+i2c_readNak
+i2c_stop
+__do_clear_bss
