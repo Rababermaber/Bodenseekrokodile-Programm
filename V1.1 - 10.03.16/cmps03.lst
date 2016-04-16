@@ -1,0 +1,151 @@
+   1               		.file	"cmps03.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	CMPS_grad
+  18               	CMPS_grad:
+  19               	.LFB5:
+  20               	.LM1:
+  21 0000 0F93      		push r16
+  22 0002 1F93      		push r17
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0004 80EC      		ldi r24,lo8(-64)
+  27 0006 0E94 0000 		call i2c_start
+  28               	.LM3:
+  29 000a 82E0      		ldi r24,lo8(2)
+  30 000c 0E94 0000 		call i2c_write
+  31               	.L3:
+  32               	.LM4:
+  33 0010 0E94 0000 		call i2c_stop
+  34               	.LM5:
+  35 0014 81EC      		ldi r24,lo8(-63)
+  36 0016 0E94 0000 		call i2c_start
+  37 001a 8823      		tst r24
+  38 001c 01F4      		brne .L3
+  39               	.LM6:
+  40 001e 0E94 0000 		call i2c_readAck
+  41 0022 182F      		mov r17,r24
+  42               	.LVL0:
+  43               	.LM7:
+  44 0024 0E94 0000 		call i2c_readNak
+  45 0028 082F      		mov r16,r24
+  46               	.LVL1:
+  47               	.LM8:
+  48 002a 0E94 0000 		call i2c_stop
+  49 002e 312F      		mov r19,r17
+  50               	.LVL2:
+  51 0030 20E0      		ldi r18,lo8(0)
+  52               	.LVL3:
+  53 0032 200F      		add r18,r16
+  54 0034 311D      		adc r19,__zero_reg__
+  55               	.LVL4:
+  56               	.LM9:
+  57 0036 C901      		movw r24,r18
+  58               	/* epilogue start */
+  59 0038 1F91      		pop r17
+  60 003a 0F91      		pop r16
+  61               	.LVL5:
+  62 003c 0895      		ret
+  63               	.LFE5:
+  65               	.global	relativeRichtung
+  67               	relativeRichtung:
+  68               	.LFB6:
+  69               	.LM10:
+  70               	.LVL6:
+  71 003e 0F93      		push r16
+  72 0040 1F93      		push r17
+  73               	/* prologue: function */
+  74               	/* frame size = 0 */
+  75 0042 8C01      		movw r16,r24
+  76               	.LM11:
+  77 0044 0E94 0000 		call CMPS_grad
+  78               	.LVL7:
+  79 0048 9C01      		movw r18,r24
+  80               	.LVL8:
+  81 004a 201B      		sub r18,r16
+  82 004c 310B      		sbc r19,r17
+  83               	.LM12:
+  84 004e 88EF      		ldi r24,hi8(-1800)
+  85 0050 283F      		cpi r18,lo8(-1800)
+  86 0052 3807      		cpc r19,r24
+  87 0054 04F4      		brge .L6
+  88 0056 205F      		subi r18,lo8(-(3600))
+  89 0058 314F      		sbci r19,hi8(-(3600))
+  90 005a 00C0      		rjmp .L7
+  91               	.L6:
+  92               	.LM13:
+  93 005c 87E0      		ldi r24,hi8(1800)
+  94 005e 2830      		cpi r18,lo8(1800)
+  95 0060 3807      		cpc r19,r24
+  96 0062 04F0      		brlt .L7
+  97 0064 2051      		subi r18,lo8(-(-3600))
+  98 0066 3E40      		sbci r19,hi8(-(-3600))
+  99               	.L7:
+ 100               	.LM14:
+ 101 0068 C901      		movw r24,r18
+ 102               	.LVL9:
+ 103               	/* epilogue start */
+ 104 006a 1F91      		pop r17
+ 105 006c 0F91      		pop r16
+ 106               	.LVL10:
+ 107 006e 0895      		ret
+ 108               	.LFE6:
+ 110               	.global	CMPS_byte
+ 112               	CMPS_byte:
+ 113               	.LFB4:
+ 114               	.LM15:
+ 115 0070 1F93      		push r17
+ 116               	/* prologue: function */
+ 117               	/* frame size = 0 */
+ 118               	.LM16:
+ 119 0072 80EC      		ldi r24,lo8(-64)
+ 120 0074 0E94 0000 		call i2c_start
+ 121               	.LM17:
+ 122 0078 81E0      		ldi r24,lo8(1)
+ 123 007a 0E94 0000 		call i2c_write
+ 124               	.L11:
+ 125               	.LM18:
+ 126 007e 0E94 0000 		call i2c_stop
+ 127               	.LM19:
+ 128 0082 81EC      		ldi r24,lo8(-63)
+ 129 0084 0E94 0000 		call i2c_start
+ 130 0088 8823      		tst r24
+ 131 008a 01F4      		brne .L11
+ 132               	.LM20:
+ 133 008c 0E94 0000 		call i2c_readNak
+ 134 0090 182F      		mov r17,r24
+ 135               	.LVL11:
+ 136               	.LM21:
+ 137 0092 0E94 0000 		call i2c_stop
+ 138               	.LM22:
+ 139 0096 812F      		mov r24,r17
+ 140               	/* epilogue start */
+ 141 0098 1F91      		pop r17
+ 142               	.LVL12:
+ 143 009a 0895      		ret
+ 144               	.LFE4:
+ 186               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 cmps03.c
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:2      *ABS*:0000003f __SREG__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:3      *ABS*:0000003e __SP_H__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:4      *ABS*:0000003d __SP_L__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:5      *ABS*:00000034 __CCP__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:7      *ABS*:00000001 __zero_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:18     .text:00000000 CMPS_grad
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:67     .text:0000003e relativeRichtung
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccefMMqy.s:112    .text:00000070 CMPS_byte
+
+UNDEFINED SYMBOLS
+i2c_start
+i2c_write
+i2c_stop
+i2c_readAck
+i2c_readNak
