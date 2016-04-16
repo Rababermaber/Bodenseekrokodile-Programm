@@ -1,0 +1,1325 @@
+   1               		.file	"atmega8.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	atmega8_vars
+  18               	atmega8_vars:
+  19               	.LFB4:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 9093 0000 		sts (usWert)+1,r25
+  26 0004 8093 0000 		sts usWert,r24
+  27               	/* epilogue start */
+  28               	.LM3:
+  29 0008 0895      		ret
+  30               	.LFE4:
+  32               	.global	__vector_20
+  34               	__vector_20:
+  35               	.LFB5:
+  36               	.LM4:
+  37 000a 1F92      		push __zero_reg__
+  38 000c 0F92      		push r0
+  39 000e 0FB6      		in r0,__SREG__
+  40 0010 0F92      		push r0
+  41 0012 1124      		clr __zero_reg__
+  42 0014 6F92      		push r6
+  43 0016 7F92      		push r7
+  44 0018 8F92      		push r8
+  45 001a 9F92      		push r9
+  46 001c AF92      		push r10
+  47 001e BF92      		push r11
+  48 0020 CF92      		push r12
+  49 0022 DF92      		push r13
+  50 0024 EF92      		push r14
+  51 0026 FF92      		push r15
+  52 0028 0F93      		push r16
+  53 002a 1F93      		push r17
+  54 002c 2F93      		push r18
+  55 002e 3F93      		push r19
+  56 0030 4F93      		push r20
+  57 0032 5F93      		push r21
+  58 0034 6F93      		push r22
+  59 0036 7F93      		push r23
+  60 0038 8F93      		push r24
+  61 003a 9F93      		push r25
+  62 003c AF93      		push r26
+  63 003e BF93      		push r27
+  64 0040 CF93      		push r28
+  65 0042 DF93      		push r29
+  66 0044 EF93      		push r30
+  67 0046 FF93      		push r31
+  68               	/* prologue: Signal */
+  69               	/* frame size = 0 */
+  70               	.LM5:
+  71 0048 4091 C600 		lds r20,198
+  72               	.LVL1:
+  73               	.LM6:
+  74 004c 842F      		mov r24,r20
+  75 004e 8170      		andi r24,lo8(1)
+  76 0050 8093 0000 		sts linie+7,r24
+  77               	.LM7:
+  78 0054 242F      		mov r18,r20
+  79 0056 30E0      		ldi r19,lo8(0)
+  80 0058 C901      		movw r24,r18
+  81 005a 8270      		andi r24,lo8(2)
+  82 005c 9070      		andi r25,hi8(2)
+  83 005e 9595      		asr r25
+  84 0060 8795      		ror r24
+  85 0062 8093 0000 		sts linie+6,r24
+  86               	.LM8:
+  87 0066 C901      		movw r24,r18
+  88 0068 8470      		andi r24,lo8(4)
+  89 006a 9070      		andi r25,hi8(4)
+  90 006c 9595      		asr r25
+  91 006e 8795      		ror r24
+  92 0070 9595      		asr r25
+  93 0072 8795      		ror r24
+  94 0074 8093 0000 		sts linie+5,r24
+  95               	.LM9:
+  96 0078 C901      		movw r24,r18
+  97 007a 8870      		andi r24,lo8(8)
+  98 007c 9070      		andi r25,hi8(8)
+  99 007e E3E0      		ldi r30,3
+ 100 0080 9595      	1:	asr r25
+ 101 0082 8795      		ror r24
+ 102 0084 EA95      		dec r30
+ 103 0086 01F4      		brne 1b
+ 104 0088 8093 0000 		sts linie+4,r24
+ 105               	.LM10:
+ 106 008c C901      		movw r24,r18
+ 107 008e 8071      		andi r24,lo8(16)
+ 108 0090 9070      		andi r25,hi8(16)
+ 109 0092 74E0      		ldi r23,4
+ 110 0094 9595      	1:	asr r25
+ 111 0096 8795      		ror r24
+ 112 0098 7A95      		dec r23
+ 113 009a 01F4      		brne 1b
+ 114 009c 8093 0000 		sts linie+3,r24
+ 115               	.LM11:
+ 116 00a0 C901      		movw r24,r18
+ 117 00a2 8072      		andi r24,lo8(32)
+ 118 00a4 9070      		andi r25,hi8(32)
+ 119 00a6 65E0      		ldi r22,5
+ 120 00a8 9595      	1:	asr r25
+ 121 00aa 8795      		ror r24
+ 122 00ac 6A95      		dec r22
+ 123 00ae 01F4      		brne 1b
+ 124 00b0 8093 0000 		sts linie+2,r24
+ 125               	.LM12:
+ 126 00b4 2074      		andi r18,lo8(64)
+ 127 00b6 3070      		andi r19,hi8(64)
+ 128 00b8 56E0      		ldi r21,6
+ 129 00ba 3595      	1:	asr r19
+ 130 00bc 2795      		ror r18
+ 131 00be 5A95      		dec r21
+ 132 00c0 01F4      		brne 1b
+ 133 00c2 2093 0000 		sts linie+1,r18
+ 134               	.LM13:
+ 135 00c6 441F      		rol r20
+ 136 00c8 4427      		clr r20
+ 137 00ca 441F      		rol r20
+ 138 00cc 4093 0000 		sts linie,r20
+ 139 00d0 4091 0000 		lds r20,maxWinkel
+ 140 00d4 5091 0000 		lds r21,(maxWinkel)+1
+ 141               	.LVL2:
+ 142 00d8 6091 0000 		lds r22,minWinkel
+ 143 00dc 7091 0000 		lds r23,(minWinkel)+1
+ 144 00e0 C0E0      		ldi r28,lo8(sensorWinkel)
+ 145 00e2 D0E0      		ldi r29,hi8(sensorWinkel)
+ 146 00e4 A0E0      		ldi r26,lo8(0)
+ 147 00e6 B0E0      		ldi r27,hi8(0)
+ 148               	.L6:
+ 149               	.LBB2:
+ 150               	.LM14:
+ 151 00e8 FD01      		movw r30,r26
+ 152 00ea E050      		subi r30,lo8(-(linie))
+ 153 00ec F040      		sbci r31,hi8(-(linie))
+ 154 00ee 8081      		ld r24,Z
+ 155 00f0 8823      		tst r24
+ 156 00f2 01F0      		breq .L4
+ 157               	.LM15:
+ 158 00f4 2881      		ld r18,Y
+ 159 00f6 3981      		ldd r19,Y+1
+ 160 00f8 8091 0000 		lds r24,dPhi
+ 161 00fc 9091 0000 		lds r25,(dPhi)+1
+ 162 0100 F901      		movw r30,r18
+ 163 0102 E81B      		sub r30,r24
+ 164 0104 F90B      		sbc r31,r25
+ 165 0106 4E17      		cp r20,r30
+ 166 0108 5F07      		cpc r21,r31
+ 167 010a 04F4      		brge .L5
+ 168               	.LM16:
+ 169 010c 8091 0000 		lds r24,dPhi
+ 170 0110 9091 0000 		lds r25,(dPhi)+1
+ 171 0114 A901      		movw r20,r18
+ 172 0116 481B      		sub r20,r24
+ 173 0118 590B      		sbc r21,r25
+ 174               	.L5:
+ 175               	.LM17:
+ 176 011a 8091 0000 		lds r24,dPhi
+ 177 011e 9091 0000 		lds r25,(dPhi)+1
+ 178 0122 F901      		movw r30,r18
+ 179 0124 E81B      		sub r30,r24
+ 180 0126 F90B      		sbc r31,r25
+ 181 0128 E617      		cp r30,r22
+ 182 012a F707      		cpc r31,r23
+ 183 012c 04F4      		brge .L4
+ 184               	.LM18:
+ 185 012e 8091 0000 		lds r24,dPhi
+ 186 0132 9091 0000 		lds r25,(dPhi)+1
+ 187 0136 B901      		movw r22,r18
+ 188 0138 681B      		sub r22,r24
+ 189 013a 790B      		sbc r23,r25
+ 190               	.L4:
+ 191 013c 1196      		adiw r26,1
+ 192 013e 2296      		adiw r28,2
+ 193               	.LM19:
+ 194 0140 A830      		cpi r26,8
+ 195 0142 B105      		cpc r27,__zero_reg__
+ 196 0144 01F4      		brne .L6
+ 197               	.LBE2:
+ 198               	.LM20:
+ 199 0146 FFEF      		ldi r31,hi8(-1)
+ 200 0148 4F3F      		cpi r20,lo8(-1)
+ 201 014a 5F07      		cpc r21,r31
+ 202 014c 01F4      		brne .L7
+ 203               	.LM21:
+ 204 014e 8091 0000 		lds r24,lMuesli
+ 205 0152 8823      		tst r24
+ 206 0154 01F0      		breq .L8
+ 207 0156 8091 0000 		lds r24,ausReset
+ 208 015a 8823      		tst r24
+ 209 015c 01F4      		brne .L8
+ 210               	.LM22:
+ 211 015e 81E0      		ldi r24,lo8(1)
+ 212 0160 8093 0000 		sts aus,r24
+ 213               	.L8:
+ 214               	.LM23:
+ 215 0164 8091 0000 		lds r24,resetCounter
+ 216 0168 8A30      		cpi r24,lo8(10)
+ 217 016a 00F4      		brsh .L9
+ 218               	.LM24:
+ 219 016c 8F5F      		subi r24,lo8(-(1))
+ 220 016e 8093 0000 		sts resetCounter,r24
+ 221 0172 00C0      		rjmp .L10
+ 222               	.L9:
+ 223               	.LM25:
+ 224 0174 8091 0000 		lds r24,aus
+ 225 0178 8823      		tst r24
+ 226 017a 01F0      		breq .+2
+ 227 017c 00C0      		rjmp .L10
+ 228               	.LM26:
+ 229 017e 8FEF      		ldi r24,lo8(-1)
+ 230 0180 9FEF      		ldi r25,hi8(-1)
+ 231 0182 00C0      		rjmp .L69
+ 232               	.L7:
+ 233               	.LM27:
+ 234 0184 6417      		cp r22,r20
+ 235 0186 7507      		cpc r23,r21
+ 236 0188 01F4      		brne .L11
+ 237               	.LM28:
+ 238 018a 1092 0000 		sts aus,__zero_reg__
+ 239               	.LM29:
+ 240 018e 1092 0000 		sts resetCounter,__zero_reg__
+ 241               	.LM30:
+ 242 0192 CB01      		movw r24,r22
+ 243 0194 845B      		subi r24,lo8(-(-180))
+ 244 0196 9040      		sbci r25,hi8(-(-180))
+ 245 0198 9093 0000 		sts (lWinkel)+1,r25
+ 246 019c 8093 0000 		sts lWinkel,r24
+ 247               	.LM31:
+ 248 01a0 97FF      		sbrs r25,7
+ 249 01a2 00C0      		rjmp .L10
+ 250               	.LM32:
+ 251 01a4 6C54      		subi r22,lo8(-(180))
+ 252 01a6 7F4F      		sbci r23,hi8(-(180))
+ 253 01a8 7093 0000 		sts (lWinkel)+1,r23
+ 254 01ac 6093 0000 		sts lWinkel,r22
+ 255 01b0 00C0      		rjmp .L10
+ 256               	.L11:
+ 257               	.LBB3:
+ 258               	.LM33:
+ 259 01b2 1092 0000 		sts aus,__zero_reg__
+ 260               	.LM34:
+ 261 01b6 1092 0000 		sts resetCounter,__zero_reg__
+ 262               	.LM35:
+ 263 01ba 9A01      		movw r18,r20
+ 264               	.LVL3:
+ 265 01bc 261B      		sub r18,r22
+ 266 01be 370B      		sbc r19,r23
+ 267               	.LM36:
+ 268 01c0 243B      		cpi r18,180
+ 269 01c2 3105      		cpc r19,__zero_reg__
+ 270 01c4 04F4      		brge .L12
+ 271               	.LM37:
+ 272 01c6 88E6      		ldi r24,lo8(360)
+ 273 01c8 91E0      		ldi r25,hi8(360)
+ 274 01ca FC01      		movw r30,r24
+ 275 01cc E21B      		sub r30,r18
+ 276 01ce F30B      		sbc r31,r19
+ 277 01d0 9F01      		movw r18,r30
+ 278               	.L12:
+ 279               	.LM38:
+ 280 01d2 C901      		movw r24,r18
+ 281 01d4 9595      		asr r25
+ 282 01d6 8795      		ror r24
+ 283               	.LVL4:
+ 284               	.LM39:
+ 285 01d8 F1E0      		ldi r31,hi8(271)
+ 286 01da 4F30      		cpi r20,lo8(271)
+ 287 01dc 5F07      		cpc r21,r31
+ 288 01de 04F0      		brlt .L13
+ 289 01e0 6A35      		cpi r22,90
+ 290 01e2 7105      		cpc r23,__zero_reg__
+ 291 01e4 04F4      		brge .L13
+ 292               	.LM40:
+ 293 01e6 481B      		sub r20,r24
+ 294 01e8 590B      		sbc r21,r25
+ 295 01ea 5093 0000 		sts (lWinkel)+1,r21
+ 296 01ee 4093 0000 		sts lWinkel,r20
+ 297 01f2 00C0      		rjmp .L14
+ 298               	.L13:
+ 299               	.LM41:
+ 300 01f4 840F      		add r24,r20
+ 301 01f6 951F      		adc r25,r21
+ 302 01f8 9093 0000 		sts (lWinkel)+1,r25
+ 303 01fc 8093 0000 		sts lWinkel,r24
+ 304               	.L14:
+ 305               	.LM42:
+ 306 0200 8091 0000 		lds r24,lWinkel
+ 307 0204 9091 0000 		lds r25,(lWinkel)+1
+ 308               	.LVL5:
+ 309 0208 21E0      		ldi r18,hi8(361)
+ 310 020a 8936      		cpi r24,lo8(361)
+ 311 020c 9207      		cpc r25,r18
+ 312 020e 04F0      		brlt .L10
+ 313               	.LM43:
+ 314 0210 8856      		subi r24,lo8(-(-360))
+ 315 0212 9140      		sbci r25,hi8(-(-360))
+ 316               	.L69:
+ 317 0214 9093 0000 		sts (lWinkel)+1,r25
+ 318 0218 8093 0000 		sts lWinkel,r24
+ 319               	.L10:
+ 320               	.LBE3:
+ 321               	.LM44:
+ 322 021c 8091 0000 		lds r24,preSensor
+ 323 0220 9091 0000 		lds r25,(preSensor)+1
+ 324 0224 8F5F      		subi r24,lo8(-1)
+ 325 0226 9F4F      		sbci r25,hi8(-1)
+ 326 0228 01F4      		brne .L15
+ 327               	.LM45:
+ 328 022a 8091 0000 		lds r24,lWinkel
+ 329 022e 9091 0000 		lds r25,(lWinkel)+1
+ 330 0232 845B      		subi r24,lo8(-(-180))
+ 331 0234 9040      		sbci r25,hi8(-(-180))
+ 332 0236 9093 0000 		sts (preSensor)+1,r25
+ 333 023a 8093 0000 		sts preSensor,r24
+ 334               	.L15:
+ 335               	.LM46:
+ 336 023e 8091 0000 		lds r24,preSensor
+ 337 0242 9091 0000 		lds r25,(preSensor)+1
+ 338 0246 97FF      		sbrs r25,7
+ 339 0248 00C0      		rjmp .L16
+ 340               	.LM47:
+ 341 024a 8091 0000 		lds r24,preSensor
+ 342 024e 9091 0000 		lds r25,(preSensor)+1
+ 343 0252 8859      		subi r24,lo8(-(360))
+ 344 0254 9E4F      		sbci r25,hi8(-(360))
+ 345 0256 9093 0000 		sts (preSensor)+1,r25
+ 346 025a 8093 0000 		sts preSensor,r24
+ 347               	.L16:
+ 348               	.LM48:
+ 349 025e C091 0000 		lds r28,lWinkel
+ 350 0262 D091 0000 		lds r29,(lWinkel)+1
+ 351 0266 8CE4      		ldi r24,lo8(-180)
+ 352 0268 682E      		mov r6,r24
+ 353 026a 8FEF      		ldi r24,hi8(-180)
+ 354 026c 782E      		mov r7,r24
+ 355 026e 6C0E      		add r6,r28
+ 356 0270 7D1E      		adc r7,r29
+ 357 0272 7092 0000 		sts (lSensor)+1,r7
+ 358 0276 6092 0000 		sts lSensor,r6
+ 359               	.LM49:
+ 360 027a 8091 0000 		lds r24,lSensor
+ 361 027e 9091 0000 		lds r25,(lSensor)+1
+ 362 0282 97FF      		sbrs r25,7
+ 363 0284 00C0      		rjmp .L17
+ 364               	.LM50:
+ 365 0286 8091 0000 		lds r24,lSensor
+ 366 028a 9091 0000 		lds r25,(lSensor)+1
+ 367 028e 8859      		subi r24,lo8(-(360))
+ 368 0290 9E4F      		sbci r25,hi8(-(360))
+ 369 0292 9093 0000 		sts (lSensor)+1,r25
+ 370 0296 8093 0000 		sts lSensor,r24
+ 371               	.L17:
+ 372               	.LM51:
+ 373 029a 8091 0000 		lds r24,aus
+ 374 029e 8823      		tst r24
+ 375 02a0 01F0      		breq .L18
+ 376               	.LM52:
+ 377 02a2 81E0      		ldi r24,lo8(1)
+ 378 02a4 8093 0000 		sts ausReset,r24
+ 379               	.L18:
+ 380               	.LM53:
+ 381 02a8 FFEF      		ldi r31,hi8(-1)
+ 382 02aa CF3F      		cpi r28,lo8(-1)
+ 383 02ac DF07      		cpc r29,r31
+ 384 02ae 01F4      		brne .L19
+ 385               	.LM54:
+ 386 02b0 1092 0000 		sts ausReset,__zero_reg__
+ 387               	.LM55:
+ 388 02b4 D093 0000 		sts (preSensor)+1,r29
+ 389 02b8 C093 0000 		sts preSensor,r28
+ 390               	.LM56:
+ 391 02bc D093 0000 		sts (lSensor)+1,r29
+ 392 02c0 C093 0000 		sts lSensor,r28
+ 393               	.LM57:
+ 394 02c4 1092 0000 		sts korrRichtung,__zero_reg__
+ 395               	.LM58:
+ 396 02c8 88E1      		ldi r24,lo8(-1000)
+ 397 02ca 9CEF      		ldi r25,hi8(-1000)
+ 398 02cc 9093 0000 		sts (anPreSensor)+1,r25
+ 399 02d0 8093 0000 		sts anPreSensor,r24
+ 400               	.LM59:
+ 401 02d4 D093 0000 		sts (winkel_alt)+1,r29
+ 402 02d8 C093 0000 		sts winkel_alt,r28
+ 403               	.LM60:
+ 404 02dc 1092 0000 		sts (winkeldiff)+1,__zero_reg__
+ 405 02e0 1092 0000 		sts winkeldiff,__zero_reg__
+ 406 02e4 00C0      		rjmp .L20
+ 407               	.L19:
+ 408               	.LM61:
+ 409 02e6 8091 0000 		lds r24,aus
+ 410 02ea 8823      		tst r24
+ 411 02ec 01F0      		breq .L21
+ 412               	.LM62:
+ 413 02ee 1092 0000 		sts lMuesli,__zero_reg__
+ 414               	.L21:
+ 415               	.LM63:
+ 416 02f2 2091 0000 		lds r18,winkel_alt
+ 417 02f6 3091 0000 		lds r19,(winkel_alt)+1
+ 418 02fa 8FEF      		ldi r24,hi8(-1)
+ 419 02fc 2F3F      		cpi r18,lo8(-1)
+ 420 02fe 3807      		cpc r19,r24
+ 421 0300 01F0      		breq .L22
+ 422 0302 8091 0000 		lds r24,aus
+ 423 0306 8823      		tst r24
+ 424 0308 01F4      		brne .L22
+ 425               	.LM64:
+ 426 030a FE01      		movw r30,r28
+ 427 030c E21B      		sub r30,r18
+ 428 030e F30B      		sbc r31,r19
+ 429 0310 9F01      		movw r18,r30
+ 430 0312 F7FF      		sbrs r31,7
+ 431 0314 00C0      		rjmp .L23
+ 432 0316 3095      		com r19
+ 433 0318 2195      		neg r18
+ 434 031a 3F4F      		sbci r19,lo8(-1)
+ 435               	.L23:
+ 436 031c 3093 0000 		sts (winkeldiff)+1,r19
+ 437 0320 2093 0000 		sts winkeldiff,r18
+ 438               	.LM65:
+ 439 0324 253B      		cpi r18,181
+ 440 0326 3105      		cpc r19,__zero_reg__
+ 441 0328 04F0      		brlt .L24
+ 442               	.LM66:
+ 443 032a 88E6      		ldi r24,lo8(360)
+ 444 032c 91E0      		ldi r25,hi8(360)
+ 445 032e 821B      		sub r24,r18
+ 446 0330 930B      		sbc r25,r19
+ 447 0332 9093 0000 		sts (winkeldiff)+1,r25
+ 448 0336 8093 0000 		sts winkeldiff,r24
+ 449               	.L24:
+ 450               	.LM67:
+ 451 033a 8091 0000 		lds r24,winkeldiff
+ 452 033e 9091 0000 		lds r25,(winkeldiff)+1
+ 453 0342 8536      		cpi r24,101
+ 454 0344 9105      		cpc r25,__zero_reg__
+ 455 0346 04F0      		brlt .L25
+ 456               	.LM68:
+ 457 0348 81E0      		ldi r24,lo8(1)
+ 458 034a 8093 0000 		sts lMuesli,r24
+ 459               	.LM69:
+ 460 034e 8093 0000 		sts rauchKorr,r24
+ 461 0352 00C0      		rjmp .L22
+ 462               	.L25:
+ 463               	.LM70:
+ 464 0354 1092 0000 		sts lMuesli,__zero_reg__
+ 465               	.LM71:
+ 466 0358 1092 0000 		sts rauchKorr,__zero_reg__
+ 467               	.L22:
+ 468               	.LM72:
+ 469 035c 8091 0000 		lds r24,rauchKorr
+ 470 0360 8823      		tst r24
+ 471 0362 01F0      		breq .+2
+ 472 0364 00C0      		rjmp .L26
+ 473 0366 8091 0000 		lds r24,aus
+ 474 036a 8823      		tst r24
+ 475 036c 01F0      		breq .+2
+ 476 036e 00C0      		rjmp .L26
+ 477               	.LM73:
+ 478 0370 8091 0000 		lds r24,anPreSensor
+ 479 0374 9091 0000 		lds r25,(anPreSensor)+1
+ 480 0378 97FF      		sbrs r25,7
+ 481 037a 00C0      		rjmp .L27
+ 482               	.LM74:
+ 483 037c F1E0      		ldi r31,hi8(271)
+ 484 037e CF30      		cpi r28,lo8(271)
+ 485 0380 DF07      		cpc r29,r31
+ 486 0382 04F0      		brlt .L28
+ 487               	.LM75:
+ 488 0384 2091 0000 		lds r18,preSensor
+ 489 0388 3091 0000 		lds r19,(preSensor)+1
+ 490 038c CE01      		movw r24,r28
+ 491 038e 8E50      		subi r24,lo8(-(-270))
+ 492 0390 9140      		sbci r25,hi8(-(-270))
+ 493 0392 2817      		cp r18,r24
+ 494 0394 3907      		cpc r19,r25
+ 495 0396 04F4      		brge .+2
+ 496 0398 00C0      		rjmp .L70
+ 497 039a 8091 0000 		lds r24,preSensor
+ 498 039e 9091 0000 		lds r25,(preSensor)+1
+ 499 03a2 8956      		subi r24,lo8(361)
+ 500 03a4 9140      		sbci r25,hi8(361)
+ 501 03a6 04F0      		brlt .+2
+ 502 03a8 00C0      		rjmp .L41
+ 503 03aa 00C0      		rjmp .L80
+ 504               	.L28:
+ 505               	.LM76:
+ 506 03ac CA35      		cpi r28,90
+ 507 03ae D105      		cpc r29,__zero_reg__
+ 508 03b0 04F4      		brge .L31
+ 509               	.LM77:
+ 510 03b2 2091 0000 		lds r18,preSensor
+ 511 03b6 3091 0000 		lds r19,(preSensor)+1
+ 512 03ba CE01      		movw r24,r28
+ 513 03bc 825F      		subi r24,lo8(-(270))
+ 514 03be 9E4F      		sbci r25,hi8(-(270))
+ 515 03c0 8217      		cp r24,r18
+ 516 03c2 9307      		cpc r25,r19
+ 517 03c4 04F4      		brge .+2
+ 518 03c6 00C0      		rjmp .L70
+ 519 03c8 8091 0000 		lds r24,preSensor
+ 520 03cc 9091 0000 		lds r25,(preSensor)+1
+ 521 03d0 97FD      		sbrc r25,7
+ 522 03d2 00C0      		rjmp .L41
+ 523 03d4 2091 0000 		lds r18,preSensor
+ 524 03d8 3091 0000 		lds r19,(preSensor)+1
+ 525 03dc 00C0      		rjmp .L79
+ 526               	.L31:
+ 527               	.LM78:
+ 528 03de 2091 0000 		lds r18,preSensor
+ 529 03e2 3091 0000 		lds r19,(preSensor)+1
+ 530 03e6 CE01      		movw r24,r28
+ 531 03e8 875A      		subi r24,lo8(-(89))
+ 532 03ea 9F4F      		sbci r25,hi8(-(89))
+ 533 03ec 8217      		cp r24,r18
+ 534 03ee 9307      		cpc r25,r19
+ 535 03f0 04F4      		brge .+2
+ 536 03f2 00C0      		rjmp .L41
+ 537               	.L80:
+ 538 03f4 2091 0000 		lds r18,preSensor
+ 539 03f8 3091 0000 		lds r19,(preSensor)+1
+ 540 03fc 00C0      		rjmp .L76
+ 541               	.L27:
+ 542               	.LM79:
+ 543 03fe 81E0      		ldi r24,hi8(271)
+ 544 0400 CF30      		cpi r28,lo8(271)
+ 545 0402 D807      		cpc r29,r24
+ 546 0404 04F0      		brlt .L35
+ 547               	.LM80:
+ 548 0406 2091 0000 		lds r18,anPreSensor
+ 549 040a 3091 0000 		lds r19,(anPreSensor)+1
+ 550 040e CE01      		movw r24,r28
+ 551 0410 8E50      		subi r24,lo8(-(-270))
+ 552 0412 9140      		sbci r25,hi8(-(-270))
+ 553 0414 2817      		cp r18,r24
+ 554 0416 3907      		cpc r19,r25
+ 555 0418 04F0      		brlt .L70
+ 556 041a 8091 0000 		lds r24,anPreSensor
+ 557 041e 9091 0000 		lds r25,(anPreSensor)+1
+ 558 0422 8956      		subi r24,lo8(361)
+ 559 0424 9140      		sbci r25,hi8(361)
+ 560 0426 04F4      		brge .L41
+ 561 0428 00C0      		rjmp .L74
+ 562               	.L35:
+ 563               	.LM81:
+ 564 042a CA35      		cpi r28,90
+ 565 042c D105      		cpc r29,__zero_reg__
+ 566 042e 04F4      		brge .L38
+ 567               	.LM82:
+ 568 0430 2091 0000 		lds r18,anPreSensor
+ 569 0434 3091 0000 		lds r19,(anPreSensor)+1
+ 570 0438 CE01      		movw r24,r28
+ 571 043a 825F      		subi r24,lo8(-(270))
+ 572 043c 9E4F      		sbci r25,hi8(-(270))
+ 573 043e 8217      		cp r24,r18
+ 574 0440 9307      		cpc r25,r19
+ 575 0442 04F0      		brlt .L70
+ 576 0444 8091 0000 		lds r24,anPreSensor
+ 577 0448 9091 0000 		lds r25,(anPreSensor)+1
+ 578 044c 97FD      		sbrc r25,7
+ 579 044e 00C0      		rjmp .L41
+ 580 0450 2091 0000 		lds r18,anPreSensor
+ 581 0454 3091 0000 		lds r19,(anPreSensor)+1
+ 582               	.L79:
+ 583 0458 CE01      		movw r24,r28
+ 584 045a 875A      		subi r24,lo8(-(89))
+ 585 045c 9F4F      		sbci r25,hi8(-(89))
+ 586 045e 8217      		cp r24,r18
+ 587 0460 9307      		cpc r25,r19
+ 588 0462 04F0      		brlt .L41
+ 589 0464 00C0      		rjmp .L70
+ 590               	.L38:
+ 591               	.LM83:
+ 592 0466 2091 0000 		lds r18,anPreSensor
+ 593 046a 3091 0000 		lds r19,(anPreSensor)+1
+ 594 046e CE01      		movw r24,r28
+ 595 0470 875A      		subi r24,lo8(-(89))
+ 596 0472 9F4F      		sbci r25,hi8(-(89))
+ 597 0474 8217      		cp r24,r18
+ 598 0476 9307      		cpc r25,r19
+ 599 0478 04F0      		brlt .L41
+ 600               	.L74:
+ 601 047a 2091 0000 		lds r18,anPreSensor
+ 602 047e 3091 0000 		lds r19,(anPreSensor)+1
+ 603               	.L76:
+ 604 0482 CE01      		movw r24,r28
+ 605 0484 8955      		subi r24,lo8(-(-89))
+ 606 0486 9040      		sbci r25,hi8(-(-89))
+ 607 0488 2817      		cp r18,r24
+ 608 048a 3907      		cpc r19,r25
+ 609 048c 04F0      		brlt .L41
+ 610               	.L70:
+ 611               	.LM84:
+ 612 048e 81E0      		ldi r24,lo8(1)
+ 613 0490 8093 0000 		sts lMuesli,r24
+ 614 0494 00C0      		rjmp .L26
+ 615               	.L41:
+ 616               	.LM85:
+ 617 0496 1092 0000 		sts lMuesli,__zero_reg__
+ 618               	.L26:
+ 619               	.LM86:
+ 620 049a 8091 0000 		lds r24,lMuesli
+ 621 049e 8823      		tst r24
+ 622 04a0 01F0      		breq .L42
+ 623               	.LM87:
+ 624 04a2 D093 0000 		sts (anPreSensor)+1,r29
+ 625 04a6 C093 0000 		sts anPreSensor,r28
+ 626 04aa 00C0      		rjmp .L43
+ 627               	.L42:
+ 628               	.LM88:
+ 629 04ac 2091 0000 		lds r18,preSensor
+ 630 04b0 3091 0000 		lds r19,(preSensor)+1
+ 631 04b4 8091 0000 		lds r24,lSensor
+ 632 04b8 9091 0000 		lds r25,(lSensor)+1
+ 633 04bc 281B      		sub r18,r24
+ 634 04be 390B      		sbc r19,r25
+ 635 04c0 37FF      		sbrs r19,7
+ 636 04c2 00C0      		rjmp .L44
+ 637 04c4 3095      		com r19
+ 638 04c6 2195      		neg r18
+ 639 04c8 3F4F      		sbci r19,lo8(-1)
+ 640               	.L44:
+ 641 04ca 2832      		cpi r18,40
+ 642 04cc 3105      		cpc r19,__zero_reg__
+ 643 04ce 04F4      		brge .+2
+ 644 04d0 00C0      		rjmp .L43
+ 645 04d2 8091 0000 		lds r24,lMuesli
+ 646 04d6 8823      		tst r24
+ 647 04d8 01F0      		breq .+2
+ 648 04da 00C0      		rjmp .L43
+ 649 04dc 8091 0000 		lds r24,aus
+ 650 04e0 8823      		tst r24
+ 651 04e2 01F0      		breq .+2
+ 652 04e4 00C0      		rjmp .L43
+ 653 04e6 8091 0000 		lds r24,preSensor
+ 654 04ea 9091 0000 		lds r25,(preSensor)+1
+ 655 04ee 8F5F      		subi r24,lo8(-1)
+ 656 04f0 9F4F      		sbci r25,hi8(-1)
+ 657 04f2 01F4      		brne .+2
+ 658 04f4 00C0      		rjmp .L43
+ 659               	.LM89:
+ 660 04f6 2091 0000 		lds r18,preSensor
+ 661 04fa 3091 0000 		lds r19,(preSensor)+1
+ 662 04fe 8091 0000 		lds r24,lSensor
+ 663 0502 9091 0000 		lds r25,(lSensor)+1
+ 664 0506 8217      		cp r24,r18
+ 665 0508 9307      		cpc r25,r19
+ 666 050a 04F0      		brlt .+2
+ 667 050c 00C0      		rjmp .L45
+ 668               	.LM90:
+ 669 050e 8091 0000 		lds r24,preSensor
+ 670 0512 9091 0000 		lds r25,(preSensor)+1
+ 671 0516 2091 0000 		lds r18,lSensor
+ 672 051a 3091 0000 		lds r19,(lSensor)+1
+ 673 051e 821B      		sub r24,r18
+ 674 0520 930B      		sbc r25,r19
+ 675 0522 853B      		cpi r24,181
+ 676 0524 9105      		cpc r25,__zero_reg__
+ 677 0526 04F4      		brge .+2
+ 678 0528 00C0      		rjmp .L46
+ 679 052a 8091 0000 		lds r24,korrRichtung
+ 680 052e 8230      		cpi r24,lo8(2)
+ 681 0530 01F4      		brne .+2
+ 682 0532 00C0      		rjmp .L46
+ 683               	.LM91:
+ 684 0534 81E0      		ldi r24,lo8(1)
+ 685 0536 8093 0000 		sts korrRichtung,r24
+ 686               	.LM92:
+ 687 053a 6091 0000 		lds r22,lSensor
+ 688 053e 7091 0000 		lds r23,(lSensor)+1
+ 689 0542 2091 0000 		lds r18,preSensor
+ 690 0546 3091 0000 		lds r19,(preSensor)+1
+ 691 054a 6859      		subi r22,lo8(-(360))
+ 692 054c 7E4F      		sbci r23,hi8(-(360))
+ 693 054e 621B      		sub r22,r18
+ 694 0550 730B      		sbc r23,r19
+ 695 0552 8827      		clr r24
+ 696 0554 77FD      		sbrc r23,7
+ 697 0556 8095      		com r24
+ 698 0558 982F      		mov r25,r24
+ 699 055a 0E94 0000 		call __floatsisf
+ 700 055e 20E0      		ldi r18,lo8(0x3f000000)
+ 701 0560 30E0      		ldi r19,hi8(0x3f000000)
+ 702 0562 40E0      		ldi r20,hlo8(0x3f000000)
+ 703 0564 5FE3      		ldi r21,hhi8(0x3f000000)
+ 704 0566 0E94 0000 		call __mulsf3
+ 705 056a 20E0      		ldi r18,lo8(0x42480000)
+ 706 056c 30E0      		ldi r19,hi8(0x42480000)
+ 707 056e 48E4      		ldi r20,hlo8(0x42480000)
+ 708 0570 52E4      		ldi r21,hhi8(0x42480000)
+ 709 0572 0E94 0000 		call __gtsf2
+ 710 0576 1816      		cp __zero_reg__,r24
+ 711 0578 04F4      		brge .L65
+ 712               	.LM93:
+ 713 057a 8091 0000 		lds r24,preSensor
+ 714 057e 9091 0000 		lds r25,(preSensor)+1
+ 715 0582 C296      		adiw r24,50
+ 716 0584 9093 0000 		sts (anPreSensor)+1,r25
+ 717 0588 8093 0000 		sts anPreSensor,r24
+ 718 058c 00C0      		rjmp .L46
+ 719               	.L65:
+ 720               	.LM94:
+ 721 058e 6091 0000 		lds r22,preSensor
+ 722 0592 7091 0000 		lds r23,(preSensor)+1
+ 723 0596 E090 0000 		lds r14,lSensor
+ 724 059a F090 0000 		lds r15,(lSensor)+1
+ 725 059e 8090 0000 		lds r8,preSensor
+ 726 05a2 9090 0000 		lds r9,(preSensor)+1
+ 727 05a6 8827      		clr r24
+ 728 05a8 77FD      		sbrc r23,7
+ 729 05aa 8095      		com r24
+ 730 05ac 982F      		mov r25,r24
+ 731 05ae 0E94 0000 		call __floatsisf
+ 732 05b2 5B01      		movw r10,r22
+ 733 05b4 6C01      		movw r12,r24
+ 734 05b6 88E6      		ldi r24,lo8(360)
+ 735 05b8 91E0      		ldi r25,hi8(360)
+ 736 05ba E80E      		add r14,r24
+ 737 05bc F91E      		adc r15,r25
+ 738 05be E818      		sub r14,r8
+ 739 05c0 F908      		sbc r15,r9
+ 740 05c2 0027      		clr r16
+ 741 05c4 F7FC      		sbrc r15,7
+ 742 05c6 0095      		com r16
+ 743 05c8 102F      		mov r17,r16
+ 744 05ca C801      		movw r24,r16
+ 745 05cc B701      		movw r22,r14
+ 746 05ce 0E94 0000 		call __floatsisf
+ 747 05d2 20E0      		ldi r18,lo8(0x3f000000)
+ 748 05d4 30E0      		ldi r19,hi8(0x3f000000)
+ 749 05d6 40E0      		ldi r20,hlo8(0x3f000000)
+ 750 05d8 5FE3      		ldi r21,hhi8(0x3f000000)
+ 751 05da 0E94 0000 		call __mulsf3
+ 752 05de 9B01      		movw r18,r22
+ 753 05e0 AC01      		movw r20,r24
+ 754 05e2 C601      		movw r24,r12
+ 755 05e4 B501      		movw r22,r10
+ 756 05e6 0E94 0000 		call __addsf3
+ 757 05ea 0E94 0000 		call __fixsfsi
+ 758 05ee 7093 0000 		sts (anPreSensor)+1,r23
+ 759 05f2 6093 0000 		sts anPreSensor,r22
+ 760               	.L46:
+ 761               	.LM95:
+ 762 05f6 8091 0000 		lds r24,preSensor
+ 763 05fa 9091 0000 		lds r25,(preSensor)+1
+ 764 05fe 2091 0000 		lds r18,lSensor
+ 765 0602 3091 0000 		lds r19,(lSensor)+1
+ 766 0606 821B      		sub r24,r18
+ 767 0608 930B      		sbc r25,r19
+ 768 060a 843B      		cpi r24,180
+ 769 060c 9105      		cpc r25,__zero_reg__
+ 770 060e 04F0      		brlt .+2
+ 771 0610 00C0      		rjmp .L43
+ 772 0612 8091 0000 		lds r24,korrRichtung
+ 773 0616 8130      		cpi r24,lo8(1)
+ 774 0618 01F4      		brne .+2
+ 775 061a 00C0      		rjmp .L43
+ 776               	.LM96:
+ 777 061c 82E0      		ldi r24,lo8(2)
+ 778 061e 8093 0000 		sts korrRichtung,r24
+ 779               	.LM97:
+ 780 0622 6091 0000 		lds r22,preSensor
+ 781 0626 7091 0000 		lds r23,(preSensor)+1
+ 782 062a 2091 0000 		lds r18,lSensor
+ 783 062e 3091 0000 		lds r19,(lSensor)+1
+ 784 0632 621B      		sub r22,r18
+ 785 0634 730B      		sbc r23,r19
+ 786 0636 8827      		clr r24
+ 787 0638 77FD      		sbrc r23,7
+ 788 063a 8095      		com r24
+ 789 063c 982F      		mov r25,r24
+ 790 063e 0E94 0000 		call __floatsisf
+ 791 0642 20E0      		ldi r18,lo8(0x3f000000)
+ 792 0644 30E0      		ldi r19,hi8(0x3f000000)
+ 793 0646 40E0      		ldi r20,hlo8(0x3f000000)
+ 794 0648 5FE3      		ldi r21,hhi8(0x3f000000)
+ 795 064a 0E94 0000 		call __mulsf3
+ 796 064e 20E0      		ldi r18,lo8(0x42480000)
+ 797 0650 30E0      		ldi r19,hi8(0x42480000)
+ 798 0652 48E4      		ldi r20,hlo8(0x42480000)
+ 799 0654 52E4      		ldi r21,hhi8(0x42480000)
+ 800 0656 0E94 0000 		call __gtsf2
+ 801 065a 1816      		cp __zero_reg__,r24
+ 802 065c 04F4      		brge .L66
+ 803               	.LM98:
+ 804 065e 8091 0000 		lds r24,preSensor
+ 805 0662 9091 0000 		lds r25,(preSensor)+1
+ 806 0666 C297      		sbiw r24,50
+ 807 0668 00C0      		rjmp .L72
+ 808               	.L66:
+ 809               	.LM99:
+ 810 066a 6091 0000 		lds r22,preSensor
+ 811 066e 7091 0000 		lds r23,(preSensor)+1
+ 812 0672 E090 0000 		lds r14,preSensor
+ 813 0676 F090 0000 		lds r15,(preSensor)+1
+ 814 067a C090 0000 		lds r12,lSensor
+ 815 067e D090 0000 		lds r13,(lSensor)+1
+ 816 0682 8827      		clr r24
+ 817 0684 77FD      		sbrc r23,7
+ 818 0686 8095      		com r24
+ 819 0688 982F      		mov r25,r24
+ 820 068a 0E94 0000 		call __floatsisf
+ 821 068e 4B01      		movw r8,r22
+ 822 0690 5C01      		movw r10,r24
+ 823 0692 EC18      		sub r14,r12
+ 824 0694 FD08      		sbc r15,r13
+ 825 0696 0027      		clr r16
+ 826 0698 F7FC      		sbrc r15,7
+ 827 069a 0095      		com r16
+ 828 069c 102F      		mov r17,r16
+ 829 069e C801      		movw r24,r16
+ 830 06a0 B701      		movw r22,r14
+ 831 06a2 0E94 0000 		call __floatsisf
+ 832 06a6 20E0      		ldi r18,lo8(0xbf000000)
+ 833 06a8 30E0      		ldi r19,hi8(0xbf000000)
+ 834 06aa 40E0      		ldi r20,hlo8(0xbf000000)
+ 835 06ac 5FEB      		ldi r21,hhi8(0xbf000000)
+ 836 06ae 00C0      		rjmp .L71
+ 837               	.L45:
+ 838               	.LM100:
+ 839 06b0 8091 0000 		lds r24,lSensor
+ 840 06b4 9091 0000 		lds r25,(lSensor)+1
+ 841 06b8 2091 0000 		lds r18,preSensor
+ 842 06bc 3091 0000 		lds r19,(preSensor)+1
+ 843 06c0 821B      		sub r24,r18
+ 844 06c2 930B      		sbc r25,r19
+ 845 06c4 853B      		cpi r24,181
+ 846 06c6 9105      		cpc r25,__zero_reg__
+ 847 06c8 04F4      		brge .+2
+ 848 06ca 00C0      		rjmp .L51
+ 849 06cc 8091 0000 		lds r24,korrRichtung
+ 850 06d0 8130      		cpi r24,lo8(1)
+ 851 06d2 01F4      		brne .+2
+ 852 06d4 00C0      		rjmp .L51
+ 853               	.LM101:
+ 854 06d6 82E0      		ldi r24,lo8(2)
+ 855 06d8 8093 0000 		sts korrRichtung,r24
+ 856               	.LM102:
+ 857 06dc 6091 0000 		lds r22,preSensor
+ 858 06e0 7091 0000 		lds r23,(preSensor)+1
+ 859 06e4 2091 0000 		lds r18,lSensor
+ 860 06e8 3091 0000 		lds r19,(lSensor)+1
+ 861 06ec 6859      		subi r22,lo8(-(360))
+ 862 06ee 7E4F      		sbci r23,hi8(-(360))
+ 863 06f0 621B      		sub r22,r18
+ 864 06f2 730B      		sbc r23,r19
+ 865 06f4 8827      		clr r24
+ 866 06f6 77FD      		sbrc r23,7
+ 867 06f8 8095      		com r24
+ 868 06fa 982F      		mov r25,r24
+ 869 06fc 0E94 0000 		call __floatsisf
+ 870 0700 20E0      		ldi r18,lo8(0x3f000000)
+ 871 0702 30E0      		ldi r19,hi8(0x3f000000)
+ 872 0704 40E0      		ldi r20,hlo8(0x3f000000)
+ 873 0706 5FE3      		ldi r21,hhi8(0x3f000000)
+ 874 0708 0E94 0000 		call __mulsf3
+ 875 070c 20E0      		ldi r18,lo8(0x42480000)
+ 876 070e 30E0      		ldi r19,hi8(0x42480000)
+ 877 0710 48E4      		ldi r20,hlo8(0x42480000)
+ 878 0712 52E4      		ldi r21,hhi8(0x42480000)
+ 879 0714 0E94 0000 		call __gtsf2
+ 880 0718 1816      		cp __zero_reg__,r24
+ 881 071a 04F4      		brge .L67
+ 882               	.LM103:
+ 883 071c 8091 0000 		lds r24,preSensor
+ 884 0720 9091 0000 		lds r25,(preSensor)+1
+ 885 0724 C297      		sbiw r24,50
+ 886 0726 9093 0000 		sts (anPreSensor)+1,r25
+ 887 072a 8093 0000 		sts anPreSensor,r24
+ 888 072e 00C0      		rjmp .L51
+ 889               	.L67:
+ 890               	.LM104:
+ 891 0730 6091 0000 		lds r22,preSensor
+ 892 0734 7091 0000 		lds r23,(preSensor)+1
+ 893 0738 E090 0000 		lds r14,preSensor
+ 894 073c F090 0000 		lds r15,(preSensor)+1
+ 895 0740 8090 0000 		lds r8,lSensor
+ 896 0744 9090 0000 		lds r9,(lSensor)+1
+ 897 0748 8827      		clr r24
+ 898 074a 77FD      		sbrc r23,7
+ 899 074c 8095      		com r24
+ 900 074e 982F      		mov r25,r24
+ 901 0750 0E94 0000 		call __floatsisf
+ 902 0754 5B01      		movw r10,r22
+ 903 0756 6C01      		movw r12,r24
+ 904 0758 E8E6      		ldi r30,lo8(360)
+ 905 075a F1E0      		ldi r31,hi8(360)
+ 906 075c EE0E      		add r14,r30
+ 907 075e FF1E      		adc r15,r31
+ 908 0760 E818      		sub r14,r8
+ 909 0762 F908      		sbc r15,r9
+ 910 0764 0027      		clr r16
+ 911 0766 F7FC      		sbrc r15,7
+ 912 0768 0095      		com r16
+ 913 076a 102F      		mov r17,r16
+ 914 076c C801      		movw r24,r16
+ 915 076e B701      		movw r22,r14
+ 916 0770 0E94 0000 		call __floatsisf
+ 917 0774 20E0      		ldi r18,lo8(0xbf000000)
+ 918 0776 30E0      		ldi r19,hi8(0xbf000000)
+ 919 0778 40E0      		ldi r20,hlo8(0xbf000000)
+ 920 077a 5FEB      		ldi r21,hhi8(0xbf000000)
+ 921 077c 0E94 0000 		call __mulsf3
+ 922 0780 9B01      		movw r18,r22
+ 923 0782 AC01      		movw r20,r24
+ 924 0784 C601      		movw r24,r12
+ 925 0786 B501      		movw r22,r10
+ 926 0788 0E94 0000 		call __addsf3
+ 927 078c 0E94 0000 		call __fixsfsi
+ 928 0790 7093 0000 		sts (anPreSensor)+1,r23
+ 929 0794 6093 0000 		sts anPreSensor,r22
+ 930               	.L51:
+ 931               	.LM105:
+ 932 0798 8091 0000 		lds r24,lSensor
+ 933 079c 9091 0000 		lds r25,(lSensor)+1
+ 934 07a0 2091 0000 		lds r18,preSensor
+ 935 07a4 3091 0000 		lds r19,(preSensor)+1
+ 936 07a8 821B      		sub r24,r18
+ 937 07aa 930B      		sbc r25,r19
+ 938 07ac 843B      		cpi r24,180
+ 939 07ae 9105      		cpc r25,__zero_reg__
+ 940 07b0 04F0      		brlt .+2
+ 941 07b2 00C0      		rjmp .L43
+ 942 07b4 8091 0000 		lds r24,korrRichtung
+ 943 07b8 8230      		cpi r24,lo8(2)
+ 944 07ba 01F4      		brne .+2
+ 945 07bc 00C0      		rjmp .L43
+ 946               	.LM106:
+ 947 07be 81E0      		ldi r24,lo8(1)
+ 948 07c0 8093 0000 		sts korrRichtung,r24
+ 949               	.LM107:
+ 950 07c4 6091 0000 		lds r22,lSensor
+ 951 07c8 7091 0000 		lds r23,(lSensor)+1
+ 952 07cc 2091 0000 		lds r18,preSensor
+ 953 07d0 3091 0000 		lds r19,(preSensor)+1
+ 954 07d4 621B      		sub r22,r18
+ 955 07d6 730B      		sbc r23,r19
+ 956 07d8 8827      		clr r24
+ 957 07da 77FD      		sbrc r23,7
+ 958 07dc 8095      		com r24
+ 959 07de 982F      		mov r25,r24
+ 960 07e0 0E94 0000 		call __floatsisf
+ 961 07e4 20E0      		ldi r18,lo8(0x3f000000)
+ 962 07e6 30E0      		ldi r19,hi8(0x3f000000)
+ 963 07e8 40E0      		ldi r20,hlo8(0x3f000000)
+ 964 07ea 5FE3      		ldi r21,hhi8(0x3f000000)
+ 965 07ec 0E94 0000 		call __mulsf3
+ 966 07f0 20E0      		ldi r18,lo8(0x42480000)
+ 967 07f2 30E0      		ldi r19,hi8(0x42480000)
+ 968 07f4 48E4      		ldi r20,hlo8(0x42480000)
+ 969 07f6 52E4      		ldi r21,hhi8(0x42480000)
+ 970 07f8 0E94 0000 		call __gtsf2
+ 971 07fc 1816      		cp __zero_reg__,r24
+ 972 07fe 04F4      		brge .L68
+ 973               	.LM108:
+ 974 0800 8091 0000 		lds r24,preSensor
+ 975 0804 9091 0000 		lds r25,(preSensor)+1
+ 976 0808 C296      		adiw r24,50
+ 977               	.L72:
+ 978 080a 9093 0000 		sts (anPreSensor)+1,r25
+ 979 080e 8093 0000 		sts anPreSensor,r24
+ 980 0812 00C0      		rjmp .L43
+ 981               	.L68:
+ 982               	.LM109:
+ 983 0814 6091 0000 		lds r22,preSensor
+ 984 0818 7091 0000 		lds r23,(preSensor)+1
+ 985 081c E090 0000 		lds r14,lSensor
+ 986 0820 F090 0000 		lds r15,(lSensor)+1
+ 987 0824 C090 0000 		lds r12,preSensor
+ 988 0828 D090 0000 		lds r13,(preSensor)+1
+ 989 082c 8827      		clr r24
+ 990 082e 77FD      		sbrc r23,7
+ 991 0830 8095      		com r24
+ 992 0832 982F      		mov r25,r24
+ 993 0834 0E94 0000 		call __floatsisf
+ 994 0838 4B01      		movw r8,r22
+ 995 083a 5C01      		movw r10,r24
+ 996 083c EC18      		sub r14,r12
+ 997 083e FD08      		sbc r15,r13
+ 998 0840 0027      		clr r16
+ 999 0842 F7FC      		sbrc r15,7
+ 1000 0844 0095      		com r16
+ 1001 0846 102F      		mov r17,r16
+ 1002 0848 C801      		movw r24,r16
+ 1003 084a B701      		movw r22,r14
+ 1004 084c 0E94 0000 		call __floatsisf
+ 1005 0850 20E0      		ldi r18,lo8(0x3f000000)
+ 1006 0852 30E0      		ldi r19,hi8(0x3f000000)
+ 1007 0854 40E0      		ldi r20,hlo8(0x3f000000)
+ 1008 0856 5FE3      		ldi r21,hhi8(0x3f000000)
+ 1009               	.L71:
+ 1010 0858 0E94 0000 		call __mulsf3
+ 1011 085c 9B01      		movw r18,r22
+ 1012 085e AC01      		movw r20,r24
+ 1013 0860 C501      		movw r24,r10
+ 1014 0862 B401      		movw r22,r8
+ 1015 0864 0E94 0000 		call __addsf3
+ 1016 0868 0E94 0000 		call __fixsfsi
+ 1017 086c 7093 0000 		sts (anPreSensor)+1,r23
+ 1018 0870 6093 0000 		sts anPreSensor,r22
+ 1019               	.L43:
+ 1020               	.LM110:
+ 1021 0874 8091 0000 		lds r24,anPreSensor
+ 1022 0878 9091 0000 		lds r25,(anPreSensor)+1
+ 1023 087c 8851      		subi r24,lo8(-1000)
+ 1024 087e 9C4F      		sbci r25,hi8(-1000)
+ 1025 0880 01F0      		breq .L56
+ 1026               	.LM111:
+ 1027 0882 8091 0000 		lds r24,anPreSensor
+ 1028 0886 9091 0000 		lds r25,(anPreSensor)+1
+ 1029 088a 8956      		subi r24,lo8(361)
+ 1030 088c 9140      		sbci r25,hi8(361)
+ 1031 088e 04F0      		brlt .L57
+ 1032               	.LM112:
+ 1033 0890 8091 0000 		lds r24,anPreSensor
+ 1034 0894 9091 0000 		lds r25,(anPreSensor)+1
+ 1035 0898 8856      		subi r24,lo8(-(-360))
+ 1036 089a 9140      		sbci r25,hi8(-(-360))
+ 1037 089c 9093 0000 		sts (anPreSensor)+1,r25
+ 1038 08a0 8093 0000 		sts anPreSensor,r24
+ 1039               	.L57:
+ 1040               	.LM113:
+ 1041 08a4 8091 0000 		lds r24,anPreSensor
+ 1042 08a8 9091 0000 		lds r25,(anPreSensor)+1
+ 1043 08ac 97FF      		sbrs r25,7
+ 1044 08ae 00C0      		rjmp .L56
+ 1045               	.LM114:
+ 1046 08b0 8091 0000 		lds r24,anPreSensor
+ 1047 08b4 9091 0000 		lds r25,(anPreSensor)+1
+ 1048 08b8 8859      		subi r24,lo8(-(360))
+ 1049 08ba 9E4F      		sbci r25,hi8(-(360))
+ 1050 08bc 9093 0000 		sts (anPreSensor)+1,r25
+ 1051 08c0 8093 0000 		sts anPreSensor,r24
+ 1052               	.L56:
+ 1053               	.LM115:
+ 1054 08c4 8091 0000 		lds r24,lMuesli
+ 1055 08c8 8823      		tst r24
+ 1056 08ca 01F0      		breq .L58
+ 1057               	.LM116:
+ 1058 08cc CE01      		movw r24,r28
+ 1059 08ce 8C54      		subi r24,lo8(-(180))
+ 1060 08d0 9F4F      		sbci r25,hi8(-(180))
+ 1061 08d2 9093 0000 		sts (lWinkel)+1,r25
+ 1062 08d6 8093 0000 		sts lWinkel,r24
+ 1063               	.LM117:
+ 1064 08da 8956      		subi r24,lo8(361)
+ 1065 08dc 9140      		sbci r25,hi8(361)
+ 1066 08de 04F0      		brlt .L58
+ 1067               	.LM118:
+ 1068 08e0 7092 0000 		sts (lWinkel)+1,r7
+ 1069 08e4 6092 0000 		sts lWinkel,r6
+ 1070               	.L58:
+ 1071               	.LM119:
+ 1072 08e8 8091 0000 		lds r24,lWinkel
+ 1073 08ec 9091 0000 		lds r25,(lWinkel)+1
+ 1074 08f0 9093 0000 		sts (winkel_alt)+1,r25
+ 1075 08f4 8093 0000 		sts winkel_alt,r24
+ 1076               	.L20:
+ 1077               	.LM120:
+ 1078 08f8 8091 0000 		lds r24,lWinkel
+ 1079 08fc 9091 0000 		lds r25,(lWinkel)+1
+ 1080 0900 9093 0000 		sts (trueWinkel)+1,r25
+ 1081 0904 8093 0000 		sts trueWinkel,r24
+ 1082               	.LM121:
+ 1083 0908 8FEF      		ldi r24,lo8(-1)
+ 1084 090a 9FEF      		ldi r25,hi8(-1)
+ 1085 090c 9093 0000 		sts (maxWinkel)+1,r25
+ 1086 0910 8093 0000 		sts maxWinkel,r24
+ 1087               	.LM122:
+ 1088 0914 88E6      		ldi r24,lo8(360)
+ 1089 0916 91E0      		ldi r25,hi8(360)
+ 1090 0918 9093 0000 		sts (minWinkel)+1,r25
+ 1091 091c 8093 0000 		sts minWinkel,r24
+ 1092               	/* epilogue start */
+ 1093               	.LM123:
+ 1094 0920 FF91      		pop r31
+ 1095 0922 EF91      		pop r30
+ 1096 0924 DF91      		pop r29
+ 1097 0926 CF91      		pop r28
+ 1098 0928 BF91      		pop r27
+ 1099 092a AF91      		pop r26
+ 1100 092c 9F91      		pop r25
+ 1101 092e 8F91      		pop r24
+ 1102 0930 7F91      		pop r23
+ 1103 0932 6F91      		pop r22
+ 1104 0934 5F91      		pop r21
+ 1105 0936 4F91      		pop r20
+ 1106 0938 3F91      		pop r19
+ 1107 093a 2F91      		pop r18
+ 1108 093c 1F91      		pop r17
+ 1109 093e 0F91      		pop r16
+ 1110 0940 FF90      		pop r15
+ 1111 0942 EF90      		pop r14
+ 1112 0944 DF90      		pop r13
+ 1113 0946 CF90      		pop r12
+ 1114 0948 BF90      		pop r11
+ 1115 094a AF90      		pop r10
+ 1116 094c 9F90      		pop r9
+ 1117 094e 8F90      		pop r8
+ 1118 0950 7F90      		pop r7
+ 1119 0952 6F90      		pop r6
+ 1120 0954 0F90      		pop r0
+ 1121 0956 0FBE      		out __SREG__,r0
+ 1122 0958 0F90      		pop r0
+ 1123 095a 1F90      		pop __zero_reg__
+ 1124 095c 1895      		reti
+ 1125               	.LFE5:
+ 1127               	.global	atmega8_init
+ 1129               	atmega8_init:
+ 1130               	.LFB6:
+ 1131               	.LM124:
+ 1132               	.LVL6:
+ 1133               	/* prologue: function */
+ 1134               	/* frame size = 0 */
+ 1135               	.LM125:
+ 1136 095e A0E0      		ldi r26,lo8(linie+7)
+ 1137 0960 B0E0      		ldi r27,hi8(linie+7)
+ 1138 0962 1092 0000 		sts linie+7,__zero_reg__
+ 1139 0966 2091 0000 		lds r18,linie+7
+ 1140 096a FD01      		movw r30,r26
+ 1141 096c 2293      		st -Z,r18
+ 1142 096e 2081      		ld r18,Z
+ 1143 0970 FD01      		movw r30,r26
+ 1144 0972 3297      		sbiw r30,2
+ 1145 0974 2083      		st Z,r18
+ 1146 0976 2081      		ld r18,Z
+ 1147 0978 FD01      		movw r30,r26
+ 1148 097a 3397      		sbiw r30,3
+ 1149 097c 2083      		st Z,r18
+ 1150 097e 2081      		ld r18,Z
+ 1151 0980 FD01      		movw r30,r26
+ 1152 0982 3497      		sbiw r30,4
+ 1153 0984 2083      		st Z,r18
+ 1154 0986 2081      		ld r18,Z
+ 1155 0988 FD01      		movw r30,r26
+ 1156 098a 3597      		sbiw r30,5
+ 1157 098c 2083      		st Z,r18
+ 1158 098e 2081      		ld r18,Z
+ 1159 0990 FD01      		movw r30,r26
+ 1160 0992 3697      		sbiw r30,6
+ 1161 0994 2083      		st Z,r18
+ 1162 0996 2081      		ld r18,Z
+ 1163 0998 1797      		sbiw r26,7
+ 1164 099a 2C93      		st X,r18
+ 1165               	.LM126:
+ 1166 099c 9093 C500 		sts 197,r25
+ 1167               	.LVL7:
+ 1168               	.LM127:
+ 1169 09a0 8093 C400 		sts 196,r24
+ 1170               	.LM128:
+ 1171 09a4 80E9      		ldi r24,lo8(-112)
+ 1172               	.LVL8:
+ 1173 09a6 8093 C100 		sts 193,r24
+ 1174               	.LM129:
+ 1175 09aa 86E0      		ldi r24,lo8(6)
+ 1176 09ac 8093 C200 		sts 194,r24
+ 1177               	/* epilogue start */
+ 1178               	.LM130:
+ 1179 09b0 0895      		ret
+ 1180               	.LFE6:
+ 1182               	.global	linie
+ 1183               	.global	linie
+ 1184               		.section .bss
+ 1187               	linie:
+ 1188 0000 0000 0000 		.skip 8,0
+ 1188      0000 0000 
+ 1189               	.global	lWinkel
+ 1190               	.global	lWinkel
+ 1193               	lWinkel:
+ 1194 0008 0000      		.skip 2,0
+ 1195               	.global	lDurchschnitt
+ 1196               	.global	lDurchschnitt
+ 1199               	lDurchschnitt:
+ 1200 000a 0000      		.skip 2,0
+ 1201               	.global	sensorWinkel
+ 1202               		.data
+ 1205               	sensorWinkel:
+ 1206 0000 1700      		.word	23
+ 1207 0002 4400      		.word	68
+ 1208 0004 7100      		.word	113
+ 1209 0006 9E00      		.word	158
+ 1210 0008 CB00      		.word	203
+ 1211 000a F800      		.word	248
+ 1212 000c 2501      		.word	293
+ 1213 000e 5201      		.word	338
+ 1214               	.global	maxWinkel
+ 1217               	maxWinkel:
+ 1218 0010 FFFF      		.word	-1
+ 1219               	.global	minWinkel
+ 1222               	minWinkel:
+ 1223 0012 6901      		.word	361
+ 1224               	.global	preWinkel
+ 1225               	.global	preWinkel
+ 1226               		.section .bss
+ 1229               	preWinkel:
+ 1230 000c 0000      		.skip 2,0
+ 1231               	.global	winkel_alt
+ 1232               		.data
+ 1235               	winkel_alt:
+ 1236 0014 FFFF      		.word	-1
+ 1237               	.global	winkeldiff
+ 1238               	.global	winkeldiff
+ 1239               		.section .bss
+ 1242               	winkeldiff:
+ 1243 000e 0000      		.skip 2,0
+ 1244               	.global	rauchKorr
+ 1245               	.global	rauchKorr
+ 1248               	rauchKorr:
+ 1249 0010 00        		.skip 1,0
+ 1250               	.global	preSensor
+ 1251               		.data
+ 1254               	preSensor:
+ 1255 0016 FFFF      		.word	-1
+ 1256               	.global	ausReset
+ 1257               	.global	ausReset
+ 1258               		.section .bss
+ 1261               	ausReset:
+ 1262 0011 00        		.skip 1,0
+ 1263               	.global	resetCounter
+ 1264               	.global	resetCounter
+ 1267               	resetCounter:
+ 1268 0012 00        		.skip 1,0
+ 1269               	.global	alpha
+ 1270               	.global	alpha
+ 1273               	alpha:
+ 1274 0013 0000      		.skip 2,0
+ 1275               	.global	beta
+ 1276               	.global	beta
+ 1279               	beta:
+ 1280 0015 0000      		.skip 2,0
+ 1281               	.global	lMuesli
+ 1282               	.global	lMuesli
+ 1285               	lMuesli:
+ 1286 0017 00        		.skip 1,0
+ 1287               	.global	aus
+ 1288               	.global	aus
+ 1291               	aus:
+ 1292 0018 00        		.skip 1,0
+ 1293               	.global	preSensorDiff
+ 1294               	.global	preSensorDiff
+ 1297               	preSensorDiff:
+ 1298 0019 0000      		.skip 2,0
+ 1299               	.global	lSensor
+ 1300               		.data
+ 1303               	lSensor:
+ 1304 0018 FFFF      		.word	-1
+ 1305               	.global	anPreSensor
+ 1308               	anPreSensor:
+ 1309 001a FFFF      		.word	-1
+ 1310               	.global	korrRichtung
+ 1311               	.global	korrRichtung
+ 1312               		.section .bss
+ 1315               	korrRichtung:
+ 1316 001b 00        		.skip 1,0
+ 1317               	.global	yRichtung
+ 1318               		.data
+ 1321               	yRichtung:
+ 1322 001c FFFF      		.word	-1
+ 1323               	.global	xRichtung
+ 1326               	xRichtung:
+ 1327 001e FFFF      		.word	-1
+ 1328               	.global	usRichtung
+ 1331               	usRichtung:
+ 1332 0020 FFFF      		.word	-1
+ 1333               	.global	trueWinkel
+ 1336               	trueWinkel:
+ 1337 0022 FFFF      		.word	-1
+ 1338               		.comm dPhi,2,1
+ 1339               		.comm usWert,2,1
+ 1380               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 atmega8.c
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:2      *ABS*:0000003f __SREG__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:3      *ABS*:0000003e __SP_H__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:4      *ABS*:0000003d __SP_L__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:5      *ABS*:00000034 __CCP__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:7      *ABS*:00000001 __zero_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:18     .text:00000000 atmega8_vars
+                            *COM*:00000002 usWert
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:34     .text:0000000a __vector_20
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1187   .bss:00000000 linie
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1217   .data:00000010 maxWinkel
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1222   .data:00000012 minWinkel
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1205   .data:00000000 sensorWinkel
+                            *COM*:00000002 dPhi
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1285   .bss:00000017 lMuesli
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1261   .bss:00000011 ausReset
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1291   .bss:00000018 aus
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1267   .bss:00000012 resetCounter
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1193   .bss:00000008 lWinkel
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1254   .data:00000016 preSensor
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1303   .data:00000018 lSensor
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1315   .bss:0000001b korrRichtung
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1308   .data:0000001a anPreSensor
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1235   .data:00000014 winkel_alt
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1242   .bss:0000000e winkeldiff
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1248   .bss:00000010 rauchKorr
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1336   .data:00000022 trueWinkel
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1129   .text:0000095e atmega8_init
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1199   .bss:0000000a lDurchschnitt
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1229   .bss:0000000c preWinkel
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1273   .bss:00000013 alpha
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1279   .bss:00000015 beta
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1297   .bss:00000019 preSensorDiff
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1321   .data:0000001c yRichtung
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1326   .data:0000001e xRichtung
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccifTY8c.s:1331   .data:00000020 usRichtung
+
+UNDEFINED SYMBOLS
+__floatsisf
+__mulsf3
+__gtsf2
+__addsf3
+__fixsfsi
+__do_copy_data
+__do_clear_bss

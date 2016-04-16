@@ -1,0 +1,386 @@
+   1               		.file	"mpu650.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	acc_values
+  18               	acc_values:
+  19               	.LFB10:
+  20               	.LM1:
+  21 0000 EF92      		push r14
+  22 0002 FF92      		push r15
+  23 0004 0F93      		push r16
+  24 0006 1F93      		push r17
+  25               	/* prologue: function */
+  26               	/* frame size = 0 */
+  27               	.LM2:
+  28 0008 80ED      		ldi r24,lo8(-48)
+  29 000a 0E94 0000 		call i2c_start
+  30 000e 8823      		tst r24
+  31 0010 01F4      		brne .L2
+  32               	.LM3:
+  33 0012 8BE3      		ldi r24,lo8(59)
+  34 0014 0E94 0000 		call i2c_write
+  35               	.L2:
+  36               	.LM4:
+  37 0018 81ED      		ldi r24,lo8(-47)
+  38 001a 0E94 0000 		call i2c_rep_start
+  39 001e 8823      		tst r24
+  40 0020 01F0      		breq .+2
+  41 0022 00C0      		rjmp .L3
+  42               	.LM5:
+  43 0024 0E94 0000 		call i2c_readAck
+  44 0028 F82E      		mov r15,r24
+  45 002a EE24      		clr r14
+  46 002c F092 0000 		sts (acc_x)+1,r15
+  47 0030 E092 0000 		sts acc_x,r14
+  48               	.LM6:
+  49 0034 0E94 0000 		call i2c_readAck
+  50               	.LM7:
+  51 0038 E80E      		add r14,r24
+  52 003a F11C      		adc r15,__zero_reg__
+  53 003c 0027      		clr r16
+  54 003e F7FC      		sbrc r15,7
+  55 0040 0095      		com r16
+  56 0042 102F      		mov r17,r16
+  57 0044 C801      		movw r24,r16
+  58 0046 B701      		movw r22,r14
+  59 0048 0E94 0000 		call __floatsisf
+  60 004c 20E0      		ldi r18,lo8(0x3d7a0000)
+  61 004e 30E0      		ldi r19,hi8(0x3d7a0000)
+  62 0050 4AE7      		ldi r20,hlo8(0x3d7a0000)
+  63 0052 5DE3      		ldi r21,hhi8(0x3d7a0000)
+  64 0054 0E94 0000 		call __mulsf3
+  65 0058 0E94 0000 		call __fixsfsi
+  66 005c 6751      		subi r22,lo8(-(-23))
+  67 005e 7040      		sbci r23,hi8(-(-23))
+  68 0060 7093 0000 		sts (acc_x)+1,r23
+  69 0064 6093 0000 		sts acc_x,r22
+  70               	.LM8:
+  71 0068 0E94 0000 		call i2c_readAck
+  72 006c F82E      		mov r15,r24
+  73 006e EE24      		clr r14
+  74 0070 F092 0000 		sts (acc_y)+1,r15
+  75 0074 E092 0000 		sts acc_y,r14
+  76               	.LM9:
+  77 0078 0E94 0000 		call i2c_readAck
+  78               	.LM10:
+  79 007c E80E      		add r14,r24
+  80 007e F11C      		adc r15,__zero_reg__
+  81 0080 0027      		clr r16
+  82 0082 F7FC      		sbrc r15,7
+  83 0084 0095      		com r16
+  84 0086 102F      		mov r17,r16
+  85 0088 C801      		movw r24,r16
+  86 008a B701      		movw r22,r14
+  87 008c 0E94 0000 		call __floatsisf
+  88 0090 20E0      		ldi r18,lo8(0x3d7a0000)
+  89 0092 30E0      		ldi r19,hi8(0x3d7a0000)
+  90 0094 4AE7      		ldi r20,hlo8(0x3d7a0000)
+  91 0096 5DE3      		ldi r21,hhi8(0x3d7a0000)
+  92 0098 0E94 0000 		call __mulsf3
+  93 009c 0E94 0000 		call __fixsfsi
+  94 00a0 7093 0000 		sts (acc_y)+1,r23
+  95 00a4 6093 0000 		sts acc_y,r22
+  96               	.LM11:
+  97 00a8 0E94 0000 		call i2c_readAck
+  98 00ac F82E      		mov r15,r24
+  99 00ae EE24      		clr r14
+ 100 00b0 F092 0000 		sts (acc_z)+1,r15
+ 101 00b4 E092 0000 		sts acc_z,r14
+ 102               	.LM12:
+ 103 00b8 0E94 0000 		call i2c_readNak
+ 104 00bc E80E      		add r14,r24
+ 105 00be F11C      		adc r15,__zero_reg__
+ 106               	.LM13:
+ 107 00c0 0027      		clr r16
+ 108 00c2 F7FC      		sbrc r15,7
+ 109 00c4 0095      		com r16
+ 110 00c6 102F      		mov r17,r16
+ 111 00c8 C801      		movw r24,r16
+ 112 00ca B701      		movw r22,r14
+ 113 00cc 0E94 0000 		call __floatsisf
+ 114 00d0 20E0      		ldi r18,lo8(0x3d7a0000)
+ 115 00d2 30E0      		ldi r19,hi8(0x3d7a0000)
+ 116 00d4 4AE7      		ldi r20,hlo8(0x3d7a0000)
+ 117 00d6 5DE3      		ldi r21,hhi8(0x3d7a0000)
+ 118 00d8 0E94 0000 		call __mulsf3
+ 119 00dc 0E94 0000 		call __fixsfsi
+ 120 00e0 7093 0000 		sts (acc_z)+1,r23
+ 121 00e4 6093 0000 		sts acc_z,r22
+ 122               	.L3:
+ 123               	.LM14:
+ 124 00e8 0E94 0000 		call i2c_stop
+ 125               	/* epilogue start */
+ 126               	.LM15:
+ 127 00ec 1F91      		pop r17
+ 128 00ee 0F91      		pop r16
+ 129 00f0 FF90      		pop r15
+ 130 00f2 EF90      		pop r14
+ 131 00f4 0895      		ret
+ 132               	.LFE10:
+ 134               	.global	Gyro_byte
+ 136               	Gyro_byte:
+ 137               	.LFB9:
+ 138               	.LM16:
+ 139 00f6 EF92      		push r14
+ 140 00f8 FF92      		push r15
+ 141 00fa 0F93      		push r16
+ 142 00fc 1F93      		push r17
+ 143               	/* prologue: function */
+ 144               	/* frame size = 0 */
+ 145               	.LM17:
+ 146 00fe 80ED      		ldi r24,lo8(-48)
+ 147 0100 0E94 0000 		call i2c_start
+ 148 0104 8823      		tst r24
+ 149 0106 01F4      		brne .L6
+ 150               	.LM18:
+ 151 0108 83E4      		ldi r24,lo8(67)
+ 152 010a 0E94 0000 		call i2c_write
+ 153               	.L6:
+ 154               	.LM19:
+ 155 010e 81ED      		ldi r24,lo8(-47)
+ 156 0110 0E94 0000 		call i2c_rep_start
+ 157 0114 8823      		tst r24
+ 158 0116 01F0      		breq .+2
+ 159 0118 00C0      		rjmp .L7
+ 160               	.LM20:
+ 161 011a 0E94 0000 		call i2c_readAck
+ 162 011e F82E      		mov r15,r24
+ 163 0120 EE24      		clr r14
+ 164 0122 F092 0000 		sts (yaw)+1,r15
+ 165 0126 E092 0000 		sts yaw,r14
+ 166               	.LM21:
+ 167 012a 0E94 0000 		call i2c_readAck
+ 168               	.LM22:
+ 169 012e E80E      		add r14,r24
+ 170 0130 F11C      		adc r15,__zero_reg__
+ 171 0132 0027      		clr r16
+ 172 0134 F7FC      		sbrc r15,7
+ 173 0136 0095      		com r16
+ 174 0138 102F      		mov r17,r16
+ 175 013a C801      		movw r24,r16
+ 176 013c B701      		movw r22,r14
+ 177 013e 0E94 0000 		call __floatsisf
+ 178 0142 20E0      		ldi r18,lo8(0x3d7a0000)
+ 179 0144 30E0      		ldi r19,hi8(0x3d7a0000)
+ 180 0146 4AE7      		ldi r20,hlo8(0x3d7a0000)
+ 181 0148 5DE3      		ldi r21,hhi8(0x3d7a0000)
+ 182 014a 0E94 0000 		call __mulsf3
+ 183 014e 0E94 0000 		call __fixsfsi
+ 184 0152 6B51      		subi r22,lo8(-(-27))
+ 185 0154 7040      		sbci r23,hi8(-(-27))
+ 186 0156 7093 0000 		sts (yaw)+1,r23
+ 187 015a 6093 0000 		sts yaw,r22
+ 188               	.LM23:
+ 189 015e 0E94 0000 		call i2c_readAck
+ 190 0162 F82E      		mov r15,r24
+ 191 0164 EE24      		clr r14
+ 192 0166 F092 0000 		sts (pitch)+1,r15
+ 193 016a E092 0000 		sts pitch,r14
+ 194               	.LM24:
+ 195 016e 0E94 0000 		call i2c_readAck
+ 196               	.LM25:
+ 197 0172 E80E      		add r14,r24
+ 198 0174 F11C      		adc r15,__zero_reg__
+ 199 0176 0027      		clr r16
+ 200 0178 F7FC      		sbrc r15,7
+ 201 017a 0095      		com r16
+ 202 017c 102F      		mov r17,r16
+ 203 017e C801      		movw r24,r16
+ 204 0180 B701      		movw r22,r14
+ 205 0182 0E94 0000 		call __floatsisf
+ 206 0186 20E0      		ldi r18,lo8(0x3d7a0000)
+ 207 0188 30E0      		ldi r19,hi8(0x3d7a0000)
+ 208 018a 4AE7      		ldi r20,hlo8(0x3d7a0000)
+ 209 018c 5DE3      		ldi r21,hhi8(0x3d7a0000)
+ 210 018e 0E94 0000 		call __mulsf3
+ 211 0192 0E94 0000 		call __fixsfsi
+ 212 0196 6150      		subi r22,lo8(-(-1))
+ 213 0198 7040      		sbci r23,hi8(-(-1))
+ 214 019a 7093 0000 		sts (pitch)+1,r23
+ 215 019e 6093 0000 		sts pitch,r22
+ 216               	.LM26:
+ 217 01a2 0E94 0000 		call i2c_readAck
+ 218 01a6 F82E      		mov r15,r24
+ 219 01a8 EE24      		clr r14
+ 220 01aa F092 0000 		sts (roll)+1,r15
+ 221 01ae E092 0000 		sts roll,r14
+ 222               	.LM27:
+ 223 01b2 0E94 0000 		call i2c_readNak
+ 224 01b6 E80E      		add r14,r24
+ 225 01b8 F11C      		adc r15,__zero_reg__
+ 226               	.LM28:
+ 227 01ba 0027      		clr r16
+ 228 01bc F7FC      		sbrc r15,7
+ 229 01be 0095      		com r16
+ 230 01c0 102F      		mov r17,r16
+ 231 01c2 C801      		movw r24,r16
+ 232 01c4 B701      		movw r22,r14
+ 233 01c6 0E94 0000 		call __floatsisf
+ 234 01ca 20E0      		ldi r18,lo8(0x3d7a0000)
+ 235 01cc 30E0      		ldi r19,hi8(0x3d7a0000)
+ 236 01ce 4AE7      		ldi r20,hlo8(0x3d7a0000)
+ 237 01d0 5DE3      		ldi r21,hhi8(0x3d7a0000)
+ 238 01d2 0E94 0000 		call __mulsf3
+ 239 01d6 0E94 0000 		call __fixsfsi
+ 240 01da 7093 0000 		sts (roll)+1,r23
+ 241 01de 6093 0000 		sts roll,r22
+ 242               	.L7:
+ 243               	.LM29:
+ 244 01e2 0E94 0000 		call i2c_stop
+ 245               	/* epilogue start */
+ 246               	.LM30:
+ 247 01e6 1F91      		pop r17
+ 248 01e8 0F91      		pop r16
+ 249 01ea FF90      		pop r15
+ 250 01ec EF90      		pop r14
+ 251 01ee 0895      		ret
+ 252               	.LFE9:
+ 254               	.global	gyro_init
+ 256               	gyro_init:
+ 257               	.LFB8:
+ 258               	.LM31:
+ 259               	/* prologue: function */
+ 260               	/* frame size = 0 */
+ 261               	.LM32:
+ 262 01f0 80ED      		ldi r24,lo8(-48)
+ 263 01f2 0E94 0000 		call i2c_start
+ 264               	.LM33:
+ 265 01f6 8BE6      		ldi r24,lo8(107)
+ 266 01f8 0E94 0000 		call i2c_write
+ 267               	.LM34:
+ 268 01fc 80E8      		ldi r24,lo8(-128)
+ 269 01fe 0E94 0000 		call i2c_write
+ 270               	.LM35:
+ 271 0202 0E94 0000 		call i2c_stop
+ 272 0206 88EC      		ldi r24,lo8(200)
+ 273 0208 90E0      		ldi r25,hi8(200)
+ 274               	.LVL0:
+ 275               	.LBB12:
+ 276               	.LBB13:
+ 277               	.LBB14:
+ 278               	.LBB15:
+ 279               	.LM36:
+ 280 020a 24EF      		ldi r18,lo8(500)
+ 281 020c 31E0      		ldi r19,hi8(500)
+ 282               	.L10:
+ 283 020e F901      		movw r30,r18
+ 284               	.LVL1:
+ 285               	/* #APP */
+ 286               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 287 0210 3197      		1: sbiw r30,1
+ 288 0212 01F4      		brne 1b
+ 289               	 ;  0 "" 2
+ 290               	/* #NOAPP */
+ 291               	.LBE15:
+ 292               	.LBE14:
+ 293               	.LM37:
+ 294 0214 0197      		sbiw r24,1
+ 295               	.LM38:
+ 296 0216 01F4      		brne .L10
+ 297               	.LBE13:
+ 298               	.LBE12:
+ 299               	.LM39:
+ 300 0218 80ED      		ldi r24,lo8(-48)
+ 301               	.LVL2:
+ 302 021a 0E94 0000 		call i2c_start
+ 303               	.LVL3:
+ 304               	.LM40:
+ 305 021e 8BE6      		ldi r24,lo8(107)
+ 306 0220 0E94 0000 		call i2c_write
+ 307               	.LM41:
+ 308 0224 80E0      		ldi r24,lo8(0)
+ 309 0226 0E94 0000 		call i2c_write
+ 310               	.LM42:
+ 311 022a 0E94 0000 		call i2c_stop
+ 312               	.LM43:
+ 313 022e 80ED      		ldi r24,lo8(-48)
+ 314 0230 0E94 0000 		call i2c_start
+ 315               	.LM44:
+ 316 0234 8AE1      		ldi r24,lo8(26)
+ 317 0236 0E94 0000 		call i2c_write
+ 318               	.LM45:
+ 319 023a 86E0      		ldi r24,lo8(6)
+ 320 023c 0E94 0000 		call i2c_write
+ 321               	.LM46:
+ 322 0240 88E1      		ldi r24,lo8(24)
+ 323 0242 0E94 0000 		call i2c_write
+ 324               	.LM47:
+ 325 0246 80E0      		ldi r24,lo8(0)
+ 326 0248 0E94 0000 		call i2c_write
+ 327               	.LM48:
+ 328 024c 0E94 0000 		call i2c_stop
+ 329               	.LM49:
+ 330 0250 80ED      		ldi r24,lo8(-48)
+ 331 0252 0E94 0000 		call i2c_start
+ 332               	.LM50:
+ 333 0256 8CE1      		ldi r24,lo8(28)
+ 334 0258 0E94 0000 		call i2c_write
+ 335               	.LM51:
+ 336 025c 80E1      		ldi r24,lo8(16)
+ 337 025e 0E94 0000 		call i2c_write
+ 338               	.LM52:
+ 339 0262 0E94 0000 		call i2c_stop
+ 340               	/* epilogue start */
+ 341               	.LM53:
+ 342 0266 0895      		ret
+ 343               	.LFE8:
+ 345               	.global	yaw
+ 346               	.global	yaw
+ 347               		.section .bss
+ 350               	yaw:
+ 351 0000 0000      		.skip 2,0
+ 352               	.global	pitch
+ 353               	.global	pitch
+ 356               	pitch:
+ 357 0002 0000      		.skip 2,0
+ 358               	.global	roll
+ 359               	.global	roll
+ 362               	roll:
+ 363 0004 0000      		.skip 2,0
+ 364               	.global	acc_x
+ 365               	.global	acc_x
+ 368               	acc_x:
+ 369 0006 0000      		.skip 2,0
+ 370               	.global	acc_y
+ 371               	.global	acc_y
+ 374               	acc_y:
+ 375 0008 0000      		.skip 2,0
+ 376               	.global	acc_z
+ 377               	.global	acc_z
+ 380               	acc_z:
+ 381 000a 0000      		.skip 2,0
+ 422               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 mpu650.c
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:2      *ABS*:0000003f __SREG__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:3      *ABS*:0000003e __SP_H__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:4      *ABS*:0000003d __SP_L__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:5      *ABS*:00000034 __CCP__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:7      *ABS*:00000001 __zero_reg__
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:18     .text:00000000 acc_values
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:368    .bss:00000006 acc_x
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:374    .bss:00000008 acc_y
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:380    .bss:0000000a acc_z
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:136    .text:000000f6 Gyro_byte
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:350    .bss:00000000 yaw
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:356    .bss:00000002 pitch
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:362    .bss:00000004 roll
+C:\DOKUME~1\rag\LOKALE~1\Temp/ccwKIDKF.s:256    .text:000001f0 gyro_init
+
+UNDEFINED SYMBOLS
+i2c_start
+i2c_write
+i2c_rep_start
+i2c_readAck
+__floatsisf
+__mulsf3
+__fixsfsi
+i2c_readNak
+i2c_stop
+__do_clear_bss
